@@ -1,5 +1,0 @@
-
-void HTTP_send()
-{
-    
-}

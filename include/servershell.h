@@ -6,16 +6,43 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
 #include <sys/types.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "../libft/libft.h"
 
-typedef struct s_data
+typedef enum s_types
 {
-    char *cmdfull;
-    char **tokens;
-    struct s_data *next;
-} t_data;
+    SUCCESS_MSG,
+    WARN_SOCKET_MSG,
+    WARN_CONN_MSG,
+    ERR_SOCKET_MSG,
+    ERR_CONN_MSG,
+}t_types;
+
+typedef struct s_table
+{
+    int     socket_fd;
+    int     connection;
+    int     port;
+    int     type;
+    int     proto;
+    int     client_status;
+    int     socket_status;
+    int     conn_status;
+    char    *cmdline;
+    char    *ip;
+    char    *send;
+    char    *recive;
+    char    *err;
+    char    *warn;
+    struct sockaddr_in fields;
+} t_table;
+
+int check(int rtrn);
+
+t_table *create_table(t_table *table, char *ip, int port);
 
 #endif
