@@ -16,7 +16,7 @@ int main(void)
     }
     else if(table->conn_status == ERR_CONN_MSG)
     {
-        table->err = strdup("Could not resolve connection!");
+        table->err = "Could not resolve connection!";
         printf("%s\n", table->err);
         exit(ERR_CONN_MSG);
     }
@@ -29,3 +29,30 @@ int main(void)
         }
     }
 }
+
+
+/* 
+    t_table *table;
+    t_table struct has following members:
+        -int     socket_fd;
+        -int     connection;
+        -int     port;
+        -int     type;
+        -int     proto;
+        -int     client_status;
+        -int     socket_status;
+        -int     conn_status;
+        -char    *cmdline;
+        -char    *ip;
+        -char    *send;
+        -char    *recive;
+        -char    *err;
+        -char    *warn;
+
+
+
+
+> create_table(t_table *table, char *IP, int PORT); 
+    Initializes Socket table structure
+    
+*/
