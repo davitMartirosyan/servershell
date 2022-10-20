@@ -7,7 +7,7 @@
 
 ### Structures
 
-- `t_table` - Structure of Table which has following members:
+- [`t_table`](https://github.com/davitMartirosyan/servershell/blob/master/include/servershell.h#L25) - Structure of Table which has following members:
     - int   socket_fd;
     - int   connection;
     - int   port;
