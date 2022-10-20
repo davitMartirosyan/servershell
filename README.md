@@ -25,6 +25,6 @@
 
 ### Created Function
 
-- `create_table(t_table *, char *, int)` - Creates a table structure and initializes socket and connect functions.
+- [`create_table(t_table *, char *, int)`](https://github.com/davitMartirosyan/servershell/blob/master/clientsrc/init.c) - Creates a table structure and initializes socket and connect functions.
 
 
