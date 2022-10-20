@@ -24,7 +24,8 @@ typedef enum s_types
 
 typedef struct s_table
 {
-    int     socket_fd;
+    int     socket_client_fd;
+    int     socket_server_fd;
     int     connection;
     int     port;
     int     type;
@@ -43,6 +44,7 @@ typedef struct s_table
 
 int check(int rtrn);
 
-t_table *create_table(t_table *table, char *ip, int port);
+t_table *create_client_table(t_table *table, char *ip, int port);
+t_table *create_server_table(t_table *table, char *ip, int port);
 
 #endif
