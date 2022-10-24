@@ -5,20 +5,23 @@ int main(void)
 {
     t_table *table;
 
-    table = create_client_table(table, IP, PORT);
+    table = create_client_table(IP, PORT);
     if(!table)
         return (0);
     if(table->socket_status == ERR_SOCKET_MSG)
     {
-        table->err = "Could not resolve descriptor";
-        printf("%s\n", table->err);
+        printf("Could not resolve descriptor\n");
         exit(ERR_SOCKET_MSG);
     }
     if(table->conn_status == ERR_CONN_MSG)
     {
-        table->err = "Could not resolve connection!";
-        printf("%s\n", table->err);
+        printf("Could not resolve connection!\n");
         exit(ERR_CONN_MSG);
+    }
+    if(table->binding_status == ERR_BINDING_MSG)
+    {
+        printf("Invalid address: {%s} not supported\n", table->ip);
+        exit(ERR_BINDING_MSG);
     }
     else
     {

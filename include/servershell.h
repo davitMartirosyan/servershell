@@ -20,6 +20,8 @@ typedef enum s_types
     WARN_CONN_MSG,
     ERR_SOCKET_MSG,
     ERR_CONN_MSG,
+    ERR_BINDING_MSG,
+    ERR_LISTENING_MSG
 }t_types;
 
 typedef struct s_table
@@ -31,20 +33,24 @@ typedef struct s_table
     int     type;
     int     proto;
     int     client_status;
+    int     server_status;
     int     socket_status;
+    int     new_socket_status;
     int     conn_status;
+    int     binding_status;
+    int     listening_status;
     char    *cmdline;
     char    *ip;
     char    *send;
     char    *recive;
     char    *err;
     char    *warn;
+    char    buffer[1024];
+    int     size_read;
     struct sockaddr_in fields;
 } t_table;
 
-int check(int rtrn);
-
-t_table *create_client_table(t_table *table, char *ip, int port);
-t_table *create_server_table(t_table *table, char *ip, int port);
+t_table *create_client_table(char *ip, int port);
+t_table *create_server_table(int port);
 
 #endif
