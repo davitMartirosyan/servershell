@@ -1,6 +1,8 @@
 #include "../include/servershell.h"
+
 #define IP "139.144.26.27"
 #define PORT 8080
+
 int main(void)
 {
     t_table *table;
@@ -27,12 +29,16 @@ int main(void)
     {
         while(1)
         {
+            //reading command
             table->cmdline = readline("~ ");
             printf("%s | %d | %d\n", \
             table->cmdline, \
             table->socket_client_fd, \
             table->connection \
             );
+
+           //
+            send(table->socket_client_fd, (char*)sizeof(table->cmdline), 2, 0);
             send(table->socket_client_fd, table->cmdline, sizeof(table->cmdline), 0);
         }
     }
