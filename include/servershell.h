@@ -46,8 +46,8 @@ typedef struct s_table
     char    *recive;
     char    *err;
     char    *warn;
-    char    buffer[1024];
-    int     size_read;
+    char*   read_output;
+    int16_t    size_read;
     struct sockaddr_in fields;
 } t_table;
 

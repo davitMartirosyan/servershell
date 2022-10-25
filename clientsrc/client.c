@@ -46,6 +46,7 @@ int main(void)
                 perror("Error, send size of command");
                 exit(EXIT_FAILURE);
             }
+            printf("Client: send size of command done !\n");
 
             // send command
             if(send(table->socket_client_fd, table->cmdline, table->size_cmdline, 0) < 0)
@@ -53,6 +54,23 @@ int main(void)
                 perror("Error, send command");
                 exit(EXIT_FAILURE);
             }
+            printf("Client: send command done !\n");
+
+
+            // read size of command output
+            if (read(new_socket, &table->size_read, 2) < 0) {
+                perror("Error, read size of command output");
+                exit(EXIT_FAILURE);
+            }
+            printf("Client: command output size of ~ %hd\n", table->size_read);
+
+            //read command output
+            table->read_output = (char *)(malloc(table->size_read));
+            if (read(new_socket, table->read_output, table->size_read) < 0) {
+                perror("Error read command output");
+                exit(EXIT_FAILURE);
+            }
+            printf("Client: command output ~ %s\n", table->read_output);
         }
     }
 }
