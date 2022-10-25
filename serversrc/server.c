@@ -30,10 +30,13 @@ int main(void)
     }
     else
     {
-        table->size_read = read(table->socket_client_fd, table->buffer, 1024);
-        printf("%s\n", table->buffer);
-        send(table->socket_client_fd, "Recived", strlen("Recived"), 0);
-
+        while(1)
+        {
+            table->size_read = read(table->socket_client_fd, table->buffer, 1024);
+            printf("%s\n", table->buffer);
+            send(table->socket_client_fd, "Recived", strlen("Recived"), 0);
+            
+        }
     }
     return (0);
 }
