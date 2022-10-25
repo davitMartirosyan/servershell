@@ -47,7 +47,7 @@ typedef struct s_table
     char    *err;
     char    *warn;
     char*   read_output;
-    int16_t    size_read;
+    int16_t  size_read;
     struct sockaddr_in fields;
 } t_table;
 

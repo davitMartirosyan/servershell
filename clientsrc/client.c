@@ -58,7 +58,7 @@ int main(void)
 
 
             // read size of command output
-            if (read(new_socket, &table->size_read, 2) < 0) {
+            if (read(table->socket_client_fd, &table->size_read, 2) < 0) {
                 perror("Error, read size of command output");
                 exit(EXIT_FAILURE);
             }
@@ -66,7 +66,7 @@ int main(void)
 
             //read command output
             table->read_output = (char *)(malloc(table->size_read));
-            if (read(new_socket, table->read_output, table->size_read) < 0) {
+            if (read(table->socket_client_fd, table->read_output, table->size_read) < 0) {
                 perror("Error read command output");
                 exit(EXIT_FAILURE);
             }
