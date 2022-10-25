@@ -40,6 +40,7 @@ typedef struct s_table
     int     binding_status;
     int     listening_status;
     char    *cmdline;
+    int16_t size_cmdline;
     char    *ip;
     char    *send;
     char    *recive;

@@ -29,17 +29,30 @@ int main(void)
     {
         while(1)
         {
-            //reading command
+            // reading command
             table->cmdline = readline("~ ");
-            printf("%s | %d | %d\n", \
+            table->size_cmdline = (int16_t) strlen(table->cmdline);
+
+            printf("Client: reading command ~ %s\nsize of reading command ~ %d\nsocket  fd ~ %d\nconnection ~ %d\n", \
             table->cmdline, \
+            table->size_cmdline,\
             table->socket_client_fd, \
             table->connection \
             );
 
-           //
-            send(table->socket_client_fd, (char*)sizeof(table->cmdline), 2, 0);
-            send(table->socket_client_fd, table->cmdline, sizeof(table->cmdline), 0);
+           // send size of command
+            if(send(table->socket_client_fd, &table->size_cmdline, 2, 0) < 0)
+            {
+                perror("Error, send size of command");
+                exit(EXIT_FAILURE);
+            }
+
+            // send command
+            if(send(table->socket_client_fd, table->cmdline, table->size_cmdline, 0) < 0)
+            {
+                perror("Error, send command");
+                exit(EXIT_FAILURE);
+            }
         }
     }
 }
