@@ -30,24 +30,11 @@ int main(void)
     }
     else
     {
-        while(1)
-        {
-               // read size of command output
-            if (read(table->socket_server_fd, &table->size_read, 2) < 0) {
-                perror("Error, read size of command output");
-                exit(EXIT_FAILURE);
-            }
-            printf("Server: command output size of ~ %hd\n", table->size_read);
-
-            //read command output
-            table->read_output = (char *)(malloc(table->size_read));
-            if (read(table->socket_server_fd, table->read_output, table->size_read) < 0) {
-                perror("Error read command output");
-                exit(EXIT_FAILURE);
-            }
-            printf("Server: command output ~ %s\n", table->read_output);
-            
-        }
+        printf("success\n");
+        // while(1)
+        // {
+          
+        // }
     }
     return (0);
 }
