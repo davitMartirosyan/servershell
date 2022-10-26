@@ -3,6 +3,7 @@
 //#define IP "139.144.26.27"
 #define IP "127.0.0.1"
 #define PORT 8080
+#define EXIT_MSG "bye"
 
 int main(void)
 {
@@ -32,6 +33,7 @@ int main(void)
         {
             // reading command
             table->cmdline = readline("~ ");
+
             table->size_cmdline = (int16_t) strlen(table->cmdline);
 
             printf("Client: reading command ~ %s\nsize of reading command ~ %d\n", \
@@ -55,21 +57,23 @@ int main(void)
             }
             printf("Client: send command done !\n");
 
+            if (!strcmp(table->cmdline, EXIT_MSG))
+                break;
 
-            // read size of command output
-            if (read(table->socket_client_fd, &table->size_read, 2) < 0) {
-                perror("Error, read size of command output");
-                exit(EXIT_FAILURE);
-            }
-            printf("Client: command output size of ~ %hd\n", table->size_read);
-
-            //read command output
-            table->read_output = (char *)(malloc(table->size_read));
-            if (read(table->socket_client_fd, table->read_output, table->size_read) < 0) {
-                perror("Error read command output");
-                exit(EXIT_FAILURE);
-            }
-            printf("Client: command output ~ %s\n", table->read_output);
+//            // read size of command output
+//            if (read(table->socket_client_fd, &table->size_read, 2) < 0) {
+//                perror("Error, read size of command output");
+//                exit(EXIT_FAILURE);
+//            }
+//            printf("Client: command output size of ~ %hd\n", table->size_read);
+//
+//            //read command output
+//            table->read_output = (char *)(malloc(table->size_read));
+//            if (read(table->socket_client_fd, table->read_output, table->size_read) < 0) {
+//                perror("Error read command output");
+//                exit(EXIT_FAILURE);
+//            }
+//            printf("Client: command output ~ %s\n", table->read_output);
         }
 
         // closing the connected socket
