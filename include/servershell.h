@@ -6,12 +6,13 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/types.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "../libft/libft.h"
+//#include "../libft/libft.h"
 
 typedef enum s_types
 {

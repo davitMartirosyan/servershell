@@ -1,6 +1,7 @@
 #include "../include/servershell.h"
 
-#define IP "139.144.26.27"
+//#define IP "139.144.26.27"
+#define IP "127.0.0.1"
 #define PORT 8080
 
 int main(void)
@@ -33,11 +34,9 @@ int main(void)
             table->cmdline = readline("~ ");
             table->size_cmdline = (int16_t) strlen(table->cmdline);
 
-            printf("Client: reading command ~ %s\nsize of reading command ~ %d\nsocket  fd ~ %d\nconnection ~ %d\n", \
+            printf("Client: reading command ~ %s\nsize of reading command ~ %d\n", \
             table->cmdline, \
-            table->size_cmdline,\
-            table->socket_client_fd, \
-            table->connection \
+            table->size_cmdline\
             );
 
            // send size of command
@@ -72,6 +71,9 @@ int main(void)
             }
             printf("Client: command output ~ %s\n", table->read_output);
         }
+
+        // closing the connected socket
+        close(table->socket_client_fd);
     }
 }
 
