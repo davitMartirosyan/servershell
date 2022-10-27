@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   components.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmartiro <dmartiro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 00:49:58 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/10/26 01:05:51 by dmartiro         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:43:54 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_header.h"
+#include "minishell_header.h"
 
 int contains(char *tok, char *cmdline, int *pos)
 {

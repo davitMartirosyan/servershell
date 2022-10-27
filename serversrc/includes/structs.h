@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:36:09 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/10/26 16:13:46 by user             ###   ########.fr       */
+/*   Updated: 2022/10/27 18:42:31 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_tok
     struct  s_tok *prev;
 } t_tok;
 
-typedef struct s_table{
+typedef struct s_shell{
     char        **paths;
     char        **reserved;
     int         *fds;
@@ -63,8 +63,8 @@ typedef struct s_table{
     int         q_c[2];
     t_env       *env;
     t_tok       *token;
-} t_table;
+} shell;
 
-typedef int (*t_builtin_ptr)(t_list *, t_table *);
+typedef int (*t_builtin_ptr)(t_list *, shell *);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envpoints.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmartiro <dmartiro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 20:20:03 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/09/27 03:34:40 by dmartiro         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:49:07 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_env *env_tokenizing(char **envp)
    return (temp);
 }
 
-void add_paths(t_env **env, t_table **table)
+void add_paths(t_env **env, shell **table)
 {
     char **abs;
     t_env *tmp;

@@ -1,10 +1,14 @@
 # include "../include/servershell.h"
 # define PORT 8080
 
-int main(void)
+int main(int ac, char **av, char **envp)
 {
-    t_table *table;
 
+    t_table *table;
+    shell *bash;
+    char        *cmdline;
+
+    create_shell(envp, &bash);
     table = create_server_table(PORT);
     if(!table)
         return (0);
@@ -32,8 +36,8 @@ int main(void)
     {
         printf("success\n");
 
-         while(1)
-         {
+        while(1)
+        {
             // read size of command output
             if (read(table->socket_client_fd, &table->size_read, 2) < 0) {
                 perror("Error, read size of command output");
@@ -68,13 +72,12 @@ int main(void)
                 exit(EXIT_FAILURE);
             }
             printf("Server: send command done !\n");
-         }
-
+        }
         // closing the connected socket
         close(table->socket_client_fd);
         // closing the listening socket
         shutdown(table->socket_server_fd, SHUT_RDWR);
-
+       
     }
     return (0);
 }

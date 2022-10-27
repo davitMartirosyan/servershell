@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 20:20:22 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/10/26 18:11:10 by user             ###   ########.fr       */
+/*   Updated: 2022/10/27 18:44:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "../libft/libft.h"
-#include "./structs.h"
+#include "structs.h"
 
 
 /**********************************************/
@@ -54,16 +54,16 @@ void	add(t_tok **lst, t_tok *new);
 /***************Initializing*******************/
 /**********************************************/
 t_env *env_tokenizing(char **envp);
-void create_shell(char **envp, t_table **table);
-void add_paths(t_env **env, t_table **table);
+void create_shell(char **envp, shell **table);
+void add_paths(t_env **env, shell **table);
 void free_environment(char **env_tokens);
-void destruct_shell(t_table **table);
+void destruct_shell(shell **table);
 
 
 /**********************************************/
 /*************Lexical Analyzing****************/
 /**********************************************/
-void	lexical_analyzer(char *cmdline, t_table *table);
+void	lexical_analyzer(char *cmdline, shell *table);
 void    token_replacment(char *cmdline, char schr, char rchr);
 
 int     check_quotes(char *cmdline, int *q_counts);
@@ -97,6 +97,6 @@ void	redirection(char *cmdline, int *pos, int io, t_tok **token);
 /**********************************************/
 /*******************Executing******************/
 /**********************************************/
-int execute(char *cmd, t_table **table, char **envp);
+int execute(char *cmd, shell **table, char **envp);
 
 #endif

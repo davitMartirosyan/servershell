@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lex_analizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmartiro <dmartiro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 18:06:07 by root              #+#    #+#             */
-/*   Updated: 2022/10/26 08:09:45 by dmartiro         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:50:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "minishell_header.h"
 
-void lexical_analyzer(char *cmdline, t_table *table)
+void lexical_analyzer(char *cmdline, shell *table)
 {
 	openquotes(cmdline);
 	if(quote_syntax_analyzer(cmdline, table->q_c))

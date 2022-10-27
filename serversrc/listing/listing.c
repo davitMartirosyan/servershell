@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   listing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmartiro <dmartiro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 07:19:03 by root              #+#    #+#             */
-/*   Updated: 2022/10/26 04:31:52 by dmartiro         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:43:44 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_header.h"
+#include "minishell_header.h"
 
 t_tok *new_token(int len, char *token, int type)
 {
