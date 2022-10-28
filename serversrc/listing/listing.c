@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 07:19:03 by root              #+#    #+#             */
-/*   Updated: 2022/10/27 18:43:44 by user             ###   ########.fr       */
+/*   Updated: 2022/10/28 18:16:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_header.h"
+#include "../includes/minishell_header.h"
 
 t_tok *new_token(int len, char *token, int type)
 {

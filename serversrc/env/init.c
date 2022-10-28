@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 03:09:29 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/10/27 18:50:54 by user             ###   ########.fr       */
+/*   Updated: 2022/10/28 18:16:36 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_header.h"
+#include "../includes/minishell_header.h"
 
 void create_shell(char **envp, shell **bash)
 {

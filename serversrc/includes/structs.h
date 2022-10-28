@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:36:09 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/10/27 18:42:31 by user             ###   ########.fr       */
+/*   Updated: 2022/10/28 18:14:55 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
     " -> \b -> 8
 */
 
-typedef enum s_types
+typedef enum s_types_t
 {
     STDIN,         // 0  0
     STDOUT,        // 1  1
@@ -37,7 +37,7 @@ typedef enum s_types
     HEREDOC,       // 10 <<
     PIPE,          // 11 |
     UNDEFINED      // 12
-} t_type;
+} t_type_t;
 
 typedef struct s_env
 {

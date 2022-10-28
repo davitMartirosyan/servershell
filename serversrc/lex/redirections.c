@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 04:24:24 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/10/26 17:33:44 by user             ###   ########.fr       */
+/*   Updated: 2022/10/28 18:17:02 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_header.h"
+#include "../includes/minishell_header.h"
 
 int typeface(int c, int len)
 {

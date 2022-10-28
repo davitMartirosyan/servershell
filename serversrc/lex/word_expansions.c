@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   word_expansions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmartiro <dmartiro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:07:27 by root              #+#    #+#             */
-/*   Updated: 2022/10/26 04:55:44 by dmartiro         ###   ########.fr       */
+/*   Updated: 2022/10/28 18:09:06 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_header.h"
+#include "../includes/minishell_header.h"
 
 int wordlen(char *wordstart, int s_pos)
 {

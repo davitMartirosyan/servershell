@@ -1,12 +1,12 @@
-# include "../include/servershell.h"
+# include "includes/minishell_header.h"
 # define PORT 8080
 
 int main(int ac, char **av, char **envp)
 {
 
     t_table *table;
-    shell *bash;
-    char        *cmdline;
+    shell   *bash;
+    char    *cmdline;
 
     create_shell(envp, &bash);
     table = create_server_table(PORT);

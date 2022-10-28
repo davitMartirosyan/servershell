@@ -6,12 +6,12 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 18:06:07 by root              #+#    #+#             */
-/*   Updated: 2022/10/27 18:50:22 by user             ###   ########.fr       */
+/*   Updated: 2022/10/28 18:10:09 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "minishell_header.h"
+#include "../includes/minishell_header.h"
 
 void lexical_analyzer(char *cmdline, shell *table)
 {
