@@ -1,6 +1,4 @@
-#include "../include/servershell.h"
-
-
+#include "includes/minishell_header.h"
 
 void send_msg(int fd, char* msg, int16_t size_msg)
 {
@@ -21,7 +19,7 @@ void send_msg(int fd, char* msg, int16_t size_msg)
 
 
 
-int Check_path(char ***command_massiv,char *paths[])
+int Check_path(char command_massiv[10][10][10], char *paths[])
 {
     char *command_name; 
     int j = 0;
@@ -41,7 +39,7 @@ int Check_path(char ***command_massiv,char *paths[])
             {
 
                 int child;
-                child = forck();
+                child = fork();
                 if (child == 0)
                 {
                     //child 

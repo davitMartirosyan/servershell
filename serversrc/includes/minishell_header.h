@@ -6,10 +6,27 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 20:20:22 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/10/28 18:14:26 by user             ###   ########.fr       */
+/*   Updated: 2022/10/28 18:53:23 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <arpa/inet.h>
+#include <fcntl.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <syslog.h>
+#include "../../include/servershell.h"
+#include "../libft/libft.h"
+#include "structs.h"
 
 #ifndef MINISHELL_HEADER_H
 #define MINISHELL_HEADER_H
@@ -28,20 +45,6 @@
 #define CMD_ERR             127
 #define PATH_SYNTAX_ERR     "No such file or directory"
 #define PATH_ERR            1
-
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <signal.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include "../../include/servershell.h"
-#include "../libft/libft.h"
-#include "structs.h"
 
 
 /**********************************************/
@@ -98,6 +101,7 @@ void	redirection(char *cmdline, int *pos, int io, t_tok **token);
 /**********************************************/
 /*******************Executing******************/
 /**********************************************/
-int execute(char *cmd, shell **table, char **envp);
+// int execute(char *cmd, shell **table, char **envp);
+int Check_path(char command_massiv[10][10][10], char *paths[]);
 
 #endif
