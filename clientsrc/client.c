@@ -5,6 +5,13 @@
 #define IP "127.0.0.1"
 #define PORT 8080
 #define EXIT_MSG "bye"
+int client_fd = 0;
+
+void exit_func()
+{
+    close(client_fd);
+    exit(0);
+}
 
 int main(void)
 {
@@ -30,6 +37,9 @@ int main(void)
     }
     else
     {
+        client_fd = table->socket_client_fd;
+        signal(SIGINT, exit_func);
+
         while(1)
         {
             // reading command
@@ -54,7 +64,7 @@ int main(void)
         }
 
         // closing the connected socket
-        close(table->socket_client_fd);
+        exit_func();
     }
 }
 

@@ -1,6 +1,7 @@
 #ifndef SERVERSHELL_H
 #define SERVER_SHELL_H
 
+#include <signal.h>
 #include <sys/socket.h>
 #include <string.h>
 #include <fcntl.h>

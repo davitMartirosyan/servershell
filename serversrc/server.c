@@ -4,6 +4,18 @@
 # define PORT 8080
 #define EXIT_MSG "bye"
 
+int client_fd = 0;
+int server_fd = 0;
+
+void exit_func()
+{
+    // closing the connected socket
+    close(client_fd);
+    // closing the listening socket
+    shutdown(server_fd, SHUT_RDWR);
+    exit(0);
+}
+
 int main(void)
 {
     t_table *table;
@@ -35,8 +47,13 @@ int main(void)
     {
         printf("success\n");
 
+        client_fd = table->socket_client_fd;
+        server_fd = table->socket_server_fd;
+        signal(SIGINT, exit_func);
+
          while(1)
          {
+
             read_msg(table->socket_client_fd, &table->cmdline, &table->size_cmdline);
 
             printf("Server: command output size of ~ %hd\n", table->size_cmdline);
@@ -51,10 +68,7 @@ int main(void)
             send_msg(table->socket_client_fd, table->cmd_output, table->size_output);
          }
 
-        // closing the connected socket
-        close(table->socket_client_fd);
-        // closing the listening socket
-        shutdown(table->socket_server_fd, SHUT_RDWR);
+        exit_func();
 
     }
     return (0);
