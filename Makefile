@@ -1,8 +1,12 @@
 CC = gcc
 
 all:
-	$(CC) serversrc/*.c -o server.out
-	$(CC) clientsrc/*.c -lreadline -o client.out
+	$(CC) serversrc/*.c -o server
+	$(CC) clientsrc/*.c -lreadline -o client
+
+#send_read_msg.o:
+#	$(CC) -c utils/send_read_msg.c
+
 
 clean:
-	rm -rf *.out
+	rm -rf server client
