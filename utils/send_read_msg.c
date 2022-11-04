@@ -1,10 +1,4 @@
-//#include "../include/servershell.h"
-#include <stdint.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "minishell_header.h"
 
 void send_msg(int fd, char* msg, int16_t size_msg)
 {
