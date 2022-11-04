@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   listing.c                                          :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 07:19:03 by root              #+#    #+#             */
-/*   Updated: 2022/10/28 18:16:25 by user             ###   ########.fr       */
+/*   Created: 2022/10/25 14:30:41 by sabazyan          #+#    #+#             */
+/*   Updated: 2022/11/04 12:33:08 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_header.h"
+#include "minishell_header.h"
 
-t_tok *new_token(int len, char *token, int type)
+void print_pwd(char *cmd)
 {
-    t_tok *tok;
+    char    **matrix;
+    char    cwd[256];
 
-    tok = malloc(sizeof(t_tok));
-    if(!tok)
-        return (NULL);
-    tok->len  = len;
-    tok->tok  = ft_strdup(token);
-    tok->type = type;
-    tok->next = NULL;
-    return (tok);
-}
-
-void	add(t_tok **lst, t_tok *new)
-{
-	while(*lst)
-		lst = &(*lst)->next;
-	*lst = new;	
+    matrix = ft_split(cmd, ' ');
+    // if (matrix[0] && is_keyword(matrix[0]) == 0)
+    //     printf("-minishell: %s: command not found\n", matrix[0]);
+    if (matrix[0] && ft_strcmp(matrix[0], "pwd") == 0)
+        printf("%s\n", getcwd(cwd, 256));
 }

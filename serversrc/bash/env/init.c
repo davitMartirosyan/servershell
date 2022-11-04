@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_line.c                                     :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 03:17:29 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/10/27 18:50:07 by user             ###   ########.fr       */
+/*   Created: 2022/09/27 03:09:29 by dmartiro          #+#    #+#             */
+/*   Updated: 2022/11/04 12:28:29 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_header.h"
+#include "minishell_header.h"
 
-// int execute(char *cmd, t_table **table, char **envp)
-// {
-//     int stdindup =  dup(STDIN);
-//     int stdoutdup =  dup(STDOUT);
-//     printf("%d : %d\n", stdindup, stdoutdup);
-
-//     close(stdindup);
-//     close(stdoutdup);
-//     return (0);
-// }
+void create_shell(char **envp, shell **table)
+{
+	*table = malloc(sizeof(shell));
+	(*table)->env = malloc(sizeof(t_env));
+    (*table)->env = env_tokenizing(envp);
+	(*table)->reserved = ft_split(RESERVED, ' ');
+	add_paths(&(*table)->env, table);
+}

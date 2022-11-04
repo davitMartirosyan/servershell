@@ -1,10 +1,10 @@
-#include "includes/minishell_header.h"
+#include "minishell_header.h"
 
 t_table *create_server_table(int port)
 {
     t_table *table;
 
-    struct sockaddr_in client_addr;
+    struct sockaddr_in mysock;
 
     table = malloc(sizeof(t_table));
     if(!table)
@@ -17,21 +17,21 @@ t_table *create_server_table(int port)
     if(table->socket_server_fd == -1)
         table->socket_status = ERR_SOCKET_MSG;
     
-    table->fields.sin_family = table->type;
-    table->fields.sin_addr.s_addr = INADDR_ANY;
-    table->fields.sin_port = htons(table->port);
+    mysock.sin_family = table->type;
+    mysock.sin_addr.s_addr = INADDR_ANY;
+    mysock.sin_port = htons(table->port);
 
     if(bind(table->socket_server_fd, \
-        (struct sockaddr*)&(table->fields), \
-        sizeof(table->fields)) < 0)
+        (struct sockaddr*)&(mysock), \
+        sizeof(mysock)) < 0)
         table->binding_status = ERR_BINDING_MSG;
 
     if(listen(table->socket_server_fd, 3) < 0)
         table->listening_status = ERR_LISTENING_MSG;
     
-    int client_size = sizeof(client_addr);
+    int client_size = sizeof(mysock);
     table->socket_client_fd = accept(table->socket_server_fd, \
-        (struct sockaddr*)&client_addr, \
+        (struct sockaddr*)&mysock, \
         &client_size);
 
     if(table->socket_client_fd < 0)

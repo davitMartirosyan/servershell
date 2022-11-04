@@ -1,17 +1,8 @@
 #include "../include/servershell.h"
-#include "../utils/send_read_msg.c"
 
 //#define IP "139.144.26.27"
 #define IP "127.0.0.1"
 #define PORT 8080
-#define EXIT_MSG "bye"
-int client_fd = 0;
-
-void exit_func()
-{
-    close(client_fd);
-    exit(0);
-}
 
 int main(void)
 {
@@ -37,9 +28,6 @@ int main(void)
     }
     else
     {
-        client_fd = table->socket_client_fd;
-        signal(SIGINT, exit_func);
-
         while(1)
         {
             // reading command
@@ -51,20 +39,41 @@ int main(void)
             table->size_cmdline\
             );
 
-            send_msg(table->socket_client_fd, table->cmdline, table->size_cmdline);
+           // send size of command
+            if(send(table->socket_client_fd, &table->size_cmdline, 2, 0) < 0)
+            {
+                perror("Error, send size of command");
+                exit(EXIT_FAILURE);
+            }
+            printf("Client: send size of command done !\n");
 
-            if (!strcmp(table->cmdline, EXIT_MSG))
-                break;
+            // send command
+            if(send(table->socket_client_fd, table->cmdline, table->size_cmdline, 0) < 0)
+            {
+                perror("Error, send command");
+                exit(EXIT_FAILURE);
+            }
+            printf("Client: send command done !\n");
 
-            read_msg(table->socket_client_fd, &table->cmd_output, &table->size_output);
 
-            printf("Client: command output size of ~ %hd\n", table->size_output);
-            printf("Client: command output ~ %s\n", table->cmd_output);
+            // read size of command output
+            if (read(table->socket_client_fd, &table->size_read, 2) < 0) {
+                perror("Error, read size of command output");
+                exit(EXIT_FAILURE);
+            }
+            printf("Client: command output size of ~ %hd\n", table->size_read);
 
+            //read command output
+            table->read_output = (char *)(malloc(table->size_read));
+            if (read(table->socket_client_fd, table->read_output, table->size_read) < 0) {
+                perror("Error read command output");
+                exit(EXIT_FAILURE);
+            }
+            printf("Client: command output ~ %s\n", table->read_output);
         }
 
         // closing the connected socket
-        exit_func();
+        close(table->socket_client_fd);
     }
 }
 

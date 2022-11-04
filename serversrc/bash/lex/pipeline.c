@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   pipeing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 03:09:29 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/10/28 18:16:36 by user             ###   ########.fr       */
+/*   Created: 2022/10/27 10:14:09 by user              #+#    #+#             */
+/*   Updated: 2022/10/27 13:23:54 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_header.h"
+#include "minishell_header.h"
 
-void create_shell(char **envp, shell **bash)
+void add_pipe(char *cmdline, int *pos, int _p_ch, t_tok **token)
 {
-	*bash = malloc(sizeof(shell));
-	(*bash)->env = malloc(sizeof(t_env));
-    (*bash)->env = env_tokenizing(envp);
-	(*bash)->reserved = ft_split(RESERVED, ' ');
-	add_paths(&(*bash)->env, bash);
+	int i;
+	int _p;
+	int type;
+	char *pipe;
+	
+	i = *pos;
+	_p = 1;
+	while(cmdline[++i] && cmdline[i] == _p_ch)
+		++_p;
+	pipe = word(cmdline, _p, *pos);
+	if(_p > 1)
+		type = UNDEFINED;
+	else
+		type = PIPE;
+	add(token, new_token(_p, pipe, type));
+	free(pipe);
+	*pos += _p;
 }
