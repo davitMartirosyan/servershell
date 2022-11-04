@@ -1,6 +1,19 @@
 #ifndef SERVERSHELL_H
 #define SERVER_SHELL_H
 
+#include <signal.h>
+#include <sys/socket.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/types.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+
 typedef enum s_types
 {
     SUCCESS_MSG,
@@ -34,11 +47,12 @@ typedef struct s_table
     char    *recive;
     char    *err;
     char    *warn;
-    char*   read_output;
-    int16_t  size_read;
+    char*   cmd_output;
+    int16_t  size_output;
     struct sockaddr_in fields;
 } t_table;
 
 t_table *create_client_table(char *ip, int port);
 t_table *create_server_table(int port);
+
 #endif

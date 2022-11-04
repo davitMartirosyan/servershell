@@ -1,4 +1,4 @@
-#include "../include/servershell.h"
+#include "include/servershell.h"
 
 t_table *create_client_table(char *ip, int port)
 {

@@ -1,4 +1,4 @@
-#include "minishell_header.h"
+#include <sys/socket.h>
 
 void send_msg(int fd, char* msg, int16_t size_msg)
 {
@@ -8,6 +8,7 @@ void send_msg(int fd, char* msg, int16_t size_msg)
         perror("Error, send size of command");
         exit(EXIT_FAILURE);
     }
+//    printf("Send msg size done!\n");
 
     // send command
     if(send(fd, msg, size_msg, 0) < 0)
@@ -15,6 +16,7 @@ void send_msg(int fd, char* msg, int16_t size_msg)
         perror("Error, send command");
         exit(EXIT_FAILURE);
     }
+//    printf("Send msg done!\n");
 }
 
 void read_msg(int fd, char** msg, int16_t* size_msg)
