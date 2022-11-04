@@ -1,4 +1,4 @@
-#include "../include/servershell.h"
+#include "minishell_header.h"
 
 //#define IP "139.144.26.27"
 #define IP "127.0.0.1"
