@@ -1,4 +1,4 @@
-// #include "minishell_header.h"
+// #include "includes/minishell_header.h"
 
 // void send_msg(int fd, char* msg, int16_t size_msg)
 // {
@@ -18,8 +18,7 @@
 // }
 
 
-
-// int Check_path(char command_massiv[10][10][10], char *paths[])
+// int execution(table->token, char *paths[])
 // {
 //     char *command_name; 
 //     int j = 0;
@@ -40,14 +39,19 @@
 
 //                 int child;
 //                 child = fork();
+//                 int fd = open("input.txt",O_RDWR | O_TRUNC | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 //                 if (child == 0)
 //                 {
-//                     //child 
-                    
-//                     int fd = open("input.txt",O_RDWR | O_TRUNC | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+//                     //child                   
 //                     // int fd_out = dup(1); 
 //                     dup2(STDOUT,fd);
 //                     execv(command_path,command_massiv[j]);
+                    
+//                 }
+//                 else
+//                 {
+//                     //main 
+
 //                     struct stat sb;
 //                     if (stat(fd, &sb) == -1) 
 //                     {
@@ -58,13 +62,12 @@
 //                     printf("%lld\n", sb.st_size);
                     
 //                     char *buff = malloc(size_);
-//                     read(fd, buff, size_);                    
+//                     read(fd, buff, size_);   
+//                     if (read(fd, buff, size_) < 0) {
+//                         perror("Error read command output");
+//                         exit(EXIT_FAILURE);
+//     }                 
 //                     send_msg(fd,buff,size_);
-//                 }
-//                 else
-//                 {
-//                     //main 
-
 //                 }
 
 

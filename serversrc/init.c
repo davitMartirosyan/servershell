@@ -28,14 +28,5 @@ t_table *create_server_table(int port)
 
     if(listen(table->socket_server_fd, 3) < 0)
         table->listening_status = ERR_LISTENING_MSG;
-    
-    int client_size = sizeof(mysock);
-    table->socket_client_fd = accept(table->socket_server_fd, \
-        (struct sockaddr*)&mysock, \
-        &client_size);
-
-    if(table->socket_client_fd < 0)
-         table->new_socket_status = ERR_SOCKET_MSG;
-    
     return (table);
 }
