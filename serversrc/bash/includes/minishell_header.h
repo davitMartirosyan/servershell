@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 20:20:22 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/11/04 12:50:10 by user             ###   ########.fr       */
+/*   Updated: 2022/11/07 18:16:01 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 # include <netinet/in.h>
+# include <arpa/inet.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"

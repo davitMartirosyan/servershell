@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 20:20:22 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/11/04 12:50:10 by user             ###   ########.fr       */
+/*   Updated: 2022/11/07 18:15:48 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 # include <netinet/in.h>
+# include <arpa/inet.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
@@ -53,9 +54,10 @@
 
 
 /**********************************************/
-/*******************Server*********************/
+/***************Server-Client******************/
 /**********************************************/
 t_table *create_server_table(int port);
+t_table *create_client_table(char *ip, int port);
 void    read_msg(int fd, char** msg, int16_t* size_msg);
 void    send_msg(int fd, char* msg, int16_t size_msg);
 

@@ -7,8 +7,8 @@ void server_execution(int port)
 {
     t_table *table;
     shell   *bash;
-
     struct sockaddr_in client_addr;
+
     table = create_server_table(PORT);
     if(!table)
         return ;
@@ -79,7 +79,6 @@ int main(int ac, char **av, char **envp)
     t_table *table;
     shell   *bash;
     char    *cmdline;
-
     create_shell(envp, &bash);
     
     // printf("%s\n", arr[0][0]);
