@@ -119,7 +119,7 @@ typedef struct s_table
     char    *recive;
     char    *err;
     char    *warn;
-    char*   read_output;
+    char*   cmd_output;
     int16_t  size_read;
     
 } t_table;

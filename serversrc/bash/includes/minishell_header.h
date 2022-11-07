@@ -57,8 +57,8 @@
 /*******************Server*********************/
 /**********************************************/
 t_table *create_server_table(int port);
-void    read_msg(int fd, char** msg, int16_t* size_msg);
-void    send_msg(int fd, char* msg, int16_t size_msg);
+void    read_msg(int fd, char** msg);
+void    send_msg(int fd, char* msg);
 
 
 /**********************************************/
