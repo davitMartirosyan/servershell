@@ -29,7 +29,13 @@
 //         int i = 0;
 //         while(paths[i] != '\0')
 //         {
+
 //             command_name = command_massiv[j][0];
+//             if(command_name == 'exit')
+//             {
+//                 printf('bye bye from server');
+//                 return 0;
+//             }
 //             char *comm = "/";
 //             char *comm = strcat(comm, command_name);
 //             char* command_path = ft_strjoin(paths[i],comm);
@@ -85,5 +91,4 @@
 //     }
 
 // }
-
 
