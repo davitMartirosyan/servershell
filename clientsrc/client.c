@@ -44,21 +44,18 @@ int main(void)
         {
             // reading command
             table->cmdline = readline("~ ");
-            table->size_cmdline = (int16_t) strlen(table->cmdline);
 
-            printf("Client: reading command ~ %s\nClient: size of reading command ~ %d\n", \
-            table->cmdline, \
-            table->size_cmdline\
+            printf("Client: reading command ~ %s\n", \
+            table->cmdline \
             );
 
-            send_msg(table->socket_client_fd, table->cmdline, table->size_cmdline);
+            send_msg(table->socket_client_fd, table->cmdline);
 
             if (!strcmp(table->cmdline, EXIT_MSG))
                 break;
 
-            read_msg(table->socket_client_fd, &table->cmd_output, &table->size_output);
+            read_msg(table->socket_client_fd, &table->cmd_output);
 
-            printf("Client: command output size of ~ %hd\n", table->size_output);
             printf("Client: command output ~ %s\n", table->cmd_output);
 
         }

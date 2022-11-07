@@ -54,18 +54,16 @@ int main(void)
         while(1)
         {
 
-            read_msg(table->socket_client_fd, &table->cmdline, &table->size_cmdline);
+            read_msg(table->socket_client_fd, &table->cmdline);
 
-            printf("Server: command output size of ~ %hd\n", table->size_cmdline);
             printf("Server: command output ~ %s\n", table->cmdline);
 
             if (!strcmp(table->cmdline, EXIT_MSG))
                 break;
 
             table->cmd_output = "hello aper!!))";
-            table->size_output = (int16_t) strlen(table->cmd_output);
 
-            send_msg(table->socket_client_fd, table->cmd_output, table->size_output);
+            send_msg(table->socket_client_fd, table->cmd_output);
         }
 
         exit_func();

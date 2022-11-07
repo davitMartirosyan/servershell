@@ -1,7 +1,13 @@
 #include <sys/socket.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+//#include <unistd.h>
 
-void send_msg(int fd, char* msg, int16_t size_msg)
+void send_msg(int fd, char* msg)
 {
+    int16_t size_msg = (int16_t) strlen(msg);
+
     // send size of command
     if(send(fd, &size_msg, 2, 0) < 0)
     {
@@ -19,18 +25,20 @@ void send_msg(int fd, char* msg, int16_t size_msg)
 //    printf("Send msg done!\n");
 }
 
-void read_msg(int fd, char** msg, int16_t* size_msg)
+void read_msg(int fd, char** msg)
 {
+    int16_t size_msg = 0;
+
     // read size of command output
-    if (read(fd, size_msg, 2) < 0) {
+    if (recv(fd, &size_msg, 2, 0) < 0) {
         perror("Error, read size of command output");
         exit(EXIT_FAILURE);
     }
-//    printf("read size of msg ~ %d\n", *size_msg);
+//    printf("read size of msg ~ %d\n", size_msg);
 
     //read command output
-    *msg = (char *)(malloc(*size_msg));
-    if (read(fd, *msg, *size_msg) < 0) {
+    *msg = (char *)(malloc(size_msg));
+    if (recv(fd, *msg, size_msg, 0) < 0) {
         perror("Error read command output");
         exit(EXIT_FAILURE);
     }
