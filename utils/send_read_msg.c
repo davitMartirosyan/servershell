@@ -2,46 +2,47 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-//#include <unistd.h>
+#include <errno.h>
+#include "../logger/logger.h"
 
-void send_msg(int fd, char* msg)
+void send_msg(Logger *l, int fd, char* msg)
 {
     int16_t size_msg = (int16_t) strlen(msg);
 
     // send size of command
     if(send(fd, &size_msg, 2, 0) < 0)
     {
-        perror("Error, send size of command");
+        LOG_ERROR(l, "Error, send size of command: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
-//    printf("Send msg size done!\n");
+    LOG_TRACE(l, "Send msg size done! ~ %d\n", size_msg);
 
     // send command
     if(send(fd, msg, size_msg, 0) < 0)
     {
-        perror("Error, send command");
+        LOG_ERROR(l, "Error, send command: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
-//    printf("Send msg done!\n");
+    LOG_TRACE(l, "Send msg done! ~ %s\n", msg);
 }
 
-void read_msg(int fd, char** msg)
+void read_msg(Logger *l, int fd, char** msg)
 {
     int16_t size_msg = 0;
 
     // read size of command output
     if (recv(fd, &size_msg, 2, 0) < 0) {
-        perror("Error, read size of command output");
+        LOG_ERROR(l, "Error, read size of command output: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
-//    printf("read size of msg ~ %d\n", size_msg);
+    LOG_TRACE(l, "read size of msg ~ %d\n", size_msg);
 
     //read command output
     *msg = (char *)(malloc(size_msg));
     if (recv(fd, *msg, size_msg, 0) < 0) {
-        perror("Error read command output");
+        LOG_ERROR(l, "Error read command output: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
-//    printf("read msg ~ %s\n", *msg);
+    LOG_TRACE(l, "read msg ~ %s\n", *msg);
 
 }

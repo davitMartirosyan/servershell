@@ -1,6 +1,6 @@
 #include "../utils/send_read_msg.c"
 #include "bash/includes/minishell_header.h"
-#include "../logger/logger.h"
+//#include "../logger/logger.h"
 
 #define PORT 8080
 #define EXIT_MSG "bye"
@@ -101,7 +101,7 @@ int main(int ac, char **av, char **envp)
 //                exit(-1);
 //            }
 
-            read_msg(table->socket_client_fd, &table->cmdline);
+            read_msg(&l1, table->socket_client_fd, &table->cmdline);
 
             LOG_TRACE(&l1, "Server: command ~ %s\n", table->cmdline);
 
@@ -110,7 +110,7 @@ int main(int ac, char **av, char **envp)
 
             table->cmd_output = "hello aper!!))";
 
-            send_msg(table->socket_client_fd, table->cmd_output);
+            send_msg(&l1, table->socket_client_fd, table->cmd_output);
         }
 
         exit_func();
