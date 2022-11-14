@@ -4,6 +4,7 @@
 
 #define PORT 8080
 #define EXIT_MSG "bye"
+#define SERVERMSG "Yes. You're connected\n"
 
 int client_fd = 0;
 int server_fd = 0;
@@ -47,6 +48,9 @@ int main(int ac, char **av, char **envp)
     log_init(&l1);
     l = l1;
     log_in_file(&l1, true);
+    char serv_msg[] = {SERVERMSG};
+    char* client_msg;
+    client_msg = malloc(20);
 
     t_table *table;
     shell   *bash;
@@ -89,6 +93,17 @@ int main(int ac, char **av, char **envp)
 //        signal(SIGINT, exit_func);
 
         while (1) {
+/////////////////////////////////////PING///////////////////////////////////////////////
+            int read_m = recv(table->socket_client_fd, client_msg, 20, 0);
+            if (read_m > 0)
+                printf("read msg is ~ %s\n", client_msg);
+            if(!strcmp(client_msg, "Am I connected?\n"))
+            {
+               // printf("mtel em");
+                send(table->socket_client_fd, serv_msg, strlen(serv_msg), 0);
+            }
+
+/////////////////////////////////////////////////////////////////////////////////////
 
 //            int rc;
 //            pthread_t *thread;
