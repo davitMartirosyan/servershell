@@ -1,6 +1,8 @@
 #include "includes/minishell_header.h"
 #include "../utils/send_read_msg.c"
 #include "../logger/logger.h"
+#include <netdb.h>      /*  for gethostby...() and getnet...() and getserver...()   */
+
 
 //#define IP "139.144.26.27"
 #define IP "127.0.0.1"
@@ -74,6 +76,8 @@ int main(void) {
             double t = t2 - t1;
             double time_taken = ((double)t); // calculate the elapsed time
             //printf("The program took %f seconds to execute", time_taken);
+            struct hostent* resolv;
+            resolv = gethostbyname(IP);
             if(time_taken <= INTERVAL_REQUEST)
             {
                 int send_m = send(table->socket_client_fd, cl_msg, strlen(cl_msg), 0);
@@ -89,7 +93,7 @@ int main(void) {
             if(!strcmp(server_msg, "Yes. You're connected\n")){
                 time_t t;
                 time(&t);
-                printf("YOU ARE CONNECTED, Exact time is: %s\n", ctime(&t));
+                printf("%s : YOU ARE CONNECTED, Exact time is: %s\n", resolv->h_name, ctime(&t));
             }
             else{
                 printf("YOU LOST CONNECTION\n");

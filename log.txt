@@ -24,3 +24,21 @@
 [Trace] [Nov 14 2022 | 19:02:14] [line: 119, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
 [Trace] [Nov 14 2022 | 19:02:14] [line: 110, file: clientsrc/client.c] : Client: reading command ~ lav  es
 [Trace] [Nov 14 2022 | 19:02:14] [line: 119, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
+[Trace] [Nov 14 2022 | 19:02:14] [line: 110, file: clientsrc/client.c] : Client: reading command ~ dflgkf
+[Trace] [Nov 14 2022 | 19:02:14] [line: 119, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
+[Trace] [Nov 14 2022 | 19:02:14] [line: 110, file: clientsrc/client.c] : Client: reading command ~ flkgj
+[Trace] [Nov 14 2022 | 19:02:14] [line: 119, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
+[Trace] [Nov 14 2022 | 19:02:14] [line: 110, file: clientsrc/client.c] : Client: reading command ~ f,gkj
+[Trace] [Nov 14 2022 | 19:02:14] [line: 119, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
+[Trace] [Nov 14 2022 | 19:02:14] [line: 110, file: clientsrc/client.c] : Client: reading command ~ flkgjk
+[Trace] [Nov 14 2022 | 19:02:14] [line: 119, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
+[Trace] [Nov 15 2022 | 16:02:48] [line: 110, file: clientsrc/client.c] : Client: reading command ~ helloooovuu
+[Trace] [Nov 15 2022 | 16:02:48] [line: 119, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
+[Trace] [Nov 15 2022 | 16:02:48] [line: 110, file: clientsrc/client.c] : Client: reading command ~ inch kaaa
+[Trace] [Nov 15 2022 | 16:02:48] [line: 119, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
+[Trace] [Nov 15 2022 | 16:02:48] [line: 110, file: clientsrc/client.c] : Client: reading command ~ lav esss\
+[Trace] [Nov 15 2022 | 16:02:48] [line: 119, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
+[Trace] [Nov 15 2022 | 17:13:19] [line: 115, file: clientsrc/client.c] : Client: reading command ~ dksjfgh\
+[Trace] [Nov 15 2022 | 17:13:19] [line: 124, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
+[Trace] [Nov 15 2022 | 17:13:19] [line: 115, file: clientsrc/client.c] : Client: reading command ~ kfjh
+[Trace] [Nov 15 2022 | 17:13:19] [line: 124, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
