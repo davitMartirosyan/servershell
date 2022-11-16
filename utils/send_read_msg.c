@@ -1,11 +1,6 @@
-#include <sys/socket.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include "../logger/logger.h"
+# include "utils_header.h"
 
-void send_msg(Logger *l, int fd, char* msg)
+void send_msg_socket(Logger *l, int fd, char* msg)
 {
     int16_t size_msg = (int16_t) strlen(msg);
 
@@ -26,7 +21,7 @@ void send_msg(Logger *l, int fd, char* msg)
     LOG_TRACE(l, "Send msg done! ~ %s\n", msg);
 }
 
-void read_msg(Logger *l, int fd, char** msg)
+void read_msg_socket(Logger *l, int fd, char** msg)
 {
     int16_t size_msg = 0;
 

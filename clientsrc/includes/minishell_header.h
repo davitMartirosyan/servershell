@@ -51,7 +51,8 @@
 # include "../libft/libft.h"
 # include "structs.h"
 # include "builtins.h"
-# include "../logger/logger.h"
+# include "../../logger/logger.h"
+# include "../../utils/utils_header.h"
 
 
 /**********************************************/
@@ -59,8 +60,6 @@
 /**********************************************/
 t_table *create_server_table(int port);
 t_table *create_client_table(char *ip, int port);
-void    read_msg(Logger *l, int fd, char** msg);
-void    send_msg(Logger *l, int fd, char* msg);
 
 
 /**********************************************/

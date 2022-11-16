@@ -1,6 +1,4 @@
 #include "includes/minishell_header.h"
-#include "../utils/send_read_msg.c"
-//#include "../logger/logger.h"
 
 //#define IP "139.144.26.27"
 #define IP "127.0.0.1"
@@ -48,12 +46,12 @@ int main(void) {
 
             LOG_TRACE(&l1, "Client: reading command ~ %s\n", table->cmdline);
 
-            send_msg(&l1, table->socket_client_fd, table->cmdline);
+            send_msg_socket(&l1, table->socket_client_fd, table->cmdline);
 
             if (!strcmp(table->cmdline, EXIT_MSG))
                 break;
 
-            read_msg(&l1,table->socket_client_fd, &table->cmd_output);
+            read_msg_socket(&l1,table->socket_client_fd, &table->cmd_output);
 
             LOG_TRACE(&l1, "Client: command output ~ %s\n", table->cmd_output);
 

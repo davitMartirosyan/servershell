@@ -51,15 +51,16 @@
 # include "../libft/libft.h"
 # include "structs.h"
 # include "builtins.h"
-# include "/home/user/project/servershell/logger/logger.h"
+# include "../../../logger/logger.h"
+#include "../../../utils/utils_header.h"
 
 
 /**********************************************/
 /*******************Server*********************/
 /**********************************************/
 t_table *create_server_table(int port);
-void read_msg(Logger *l, int fd, char** msg);
-void send_msg(Logger *l, int fd, char* msg);
+void read_msg_socket(Logger *l, int fd, char** msg);
+void send_msg_socket(Logger *l, int fd, char* msg);
 
 
 /**********************************************/
