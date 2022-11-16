@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 20:20:22 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/11/16 12:01:20 by user             ###   ########.fr       */
+/*   Updated: 2022/11/07 18:16:01 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define CMD_REGEX         	"[:[A-Za-z]:]* [:[A-Za-z]:[[-]*[A-Za-z]]*]*"
 # define HEREDOC_REGEX    	"[[<<][A-Za-z]]*"
 # define SHELL 				"\033[0;33mMinishell-$\x1B[0m "
-# define SHELLERR           "\033[31mMinishell-$\x1B[0m" 
+# define SHELLERR           "\033[31mMinishell-$\x1B[0m"
 
 /*Error Handlers*/
 # define TOKEN_SYNTAX_ERR 	"Syntax error near unexpected token"
@@ -49,17 +49,18 @@
 # include <netinet/in.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "../../../logger/logger.h"
 # include "../libft/libft.h"
 # include "structs.h"
 # include "builtins.h"
+# include <pthread.h>
+# include "../../../logger/logger.h"
+# include "../../../utils/utils_header.h"
 
 /**********************************************/
 /*******************Server*********************/
 /**********************************************/
-t_socket_table *create_server_table(int port);
-void send_msg_server(int fd, char* msg);
-void read_msg_server(int fd, char** msg);
+t_table *create_server_table(int port);
+
 
 /**********************************************/
 /*******************Listing********************/

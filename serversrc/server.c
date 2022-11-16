@@ -1,19 +1,29 @@
-#include "minishell_header.h"
-#include "../utils/send_read_msg.c"
-#include <pthread.h>
+#include "bash/includes/minishell_header.h"
+
 #define PORT 8080
 #define EXIT_MSG "bye"
-#include <errno.h>
-#include <unistd.h>
 
-typedef struct args
+//int client_fd = 0;
+int server_fd = 0;
+Logger l;
+
+void exit_func()
 {
-    int fd;
-    char** envp; 
-} args;
-
+    log_close(&l);
+    // closing the connected socket
+//    close(client_fd);
+    // closing the listening socket
+    shutdown(server_fd, SHUT_RDWR);
+    exit(0);
+}
 
 ////////////////////////////
+typedef struct
+{
+    int fd;
+    char** envp;
+} args;
+
 void* thread_f(void *arg)
 {
 
@@ -23,43 +33,45 @@ void* thread_f(void *arg)
     t_table* bash = malloc(sizeof(t_table));
     create_shell(((args *)arg)->envp, &bash);
     printf("i am in THread function\n");
-    
-    
-while(1)
+
+
+    while(1)
     {
 
-    
-    read_msg_server(client_fd, &cmd_line);
 
-    printf("Server: command output ~ %s\n", cmd_line);
+        read_msg_socket(&l, client_fd, &cmd_line);
 
-    if (!strcmp(cmd_line, EXIT_MSG))
-        break;
+        printf("Server: command output ~ %s\n", cmd_line);
 
-    // //////////////////////////////in this section we do lex analyzation and execution 
-    // lexical_analyzer(table->cmdline, bash);
-    // // execution(table->token, *paths[]); //paths harcnel Davoic vortex a pahel, u poxel tokeni pahy henc funkciayum
+        if (!strcmp(cmd_line, EXIT_MSG))
+            break;
 
-    char *cmd_output = "massage arrived ^ !!))";
+        // //////////////////////////////in this section we do lex analyzation and execution
+        // lexical_analyzer(table->cmdline, bash);
+        // // execution(table->token, *paths[]); //paths harcnel Davoic vortex a pahel, u poxel tokeni pahy henc funkciayum
 
-    send_msg_server(client_fd, cmd_output);
+        char *cmd_output = "massage arrived ^ !!))";
 
-    }   
-        close(client_fd);
-        pthread_exit(NULL);
-    
+        send_msg_socket(&l, client_fd, cmd_output);
+
+    }
+    close(client_fd);
+    pthread_exit(NULL);
+
 }
-
-
 
 int main(int ac, char **av, char **envp)
 {
+    Logger l1;
+    log_init(&l1);
+    l = l1;
+    log_in_file(&l1, true);
 
     //creating 20 thread identifiers
     pthread_t threads[20];
-   
+
     t_socket_table *table;
-    
+
 
     struct sockaddr_in mysock;
 
@@ -74,7 +86,7 @@ int main(int ac, char **av, char **envp)
 
     if(table->socket_server_fd == -1)
         table->socket_status = ERR_SOCKET_MSG;
-    
+
     mysock.sin_family = table->type;
     mysock.sin_addr.s_addr = INADDR_ANY;
     mysock.sin_port = htons(table->port);
@@ -86,17 +98,17 @@ int main(int ac, char **av, char **envp)
         table->binding_status = ERR_BINDING_MSG;
         fprintf(stderr, "eh --- %s\n", strerror(errno));
     }
-    
+
     if(!table)
         return (0);
     if(table->socket_status == ERR_SOCKET_MSG)
     {
-        printf("Could not resolve descriptor\n");
+        LOG_ERROR(&l1, "Could not resolve descriptor ~ %d\n", table->socket_status);
         exit(ERR_SOCKET_MSG);
     }
     if(table->binding_status == ERR_BINDING_MSG)
     {
-        printf("Binding Error\n");
+        LOG_ERROR(&l1, "Binding Error ~ %d\n", table->binding_status);
         exit(ERR_BINDING_MSG);
     }
     else
@@ -104,16 +116,16 @@ int main(int ac, char **av, char **envp)
         printf("success\n");
 
 
-        //goes to while loop becouse it will continiusly listen 
+        //goes to while loop becouse it will continiusly listen
         //and then when getting some recuest it gonna check the array
-        
+
 
         for(int i =0;i < 20 ;i++)
         {
             if(listen(table->socket_server_fd, 3) < 0)
             {
                 table->listening_status = ERR_LISTENING_MSG;
-            }  
+            }
             else
             {
                 printf("listening is good 89\n");
@@ -140,10 +152,10 @@ int main(int ac, char **av, char **envp)
             exit(ERR_SOCKET_MSG);
             }
             //now as long as there are free threads we can use their identifiers
-            //and create some connections with coresponding clients 
+            //and create some connections with coresponding clients
             int rc;
-            
-            
+
+
             //argument is arg_list
             // int fd = table->socket_client_fd;
             // printf("%s\n", args_->envp[5]);
@@ -161,20 +173,17 @@ int main(int ac, char **av, char **envp)
                 // exit(-1);
                 fprintf(stderr, "%s\n", strerror(errno));
             }
+            read_msg_socket(&l1, table->socket_client_fd, &table->cmdline);
+
+            LOG_TRACE(&l1, "Server: command ~ %s\n", table->cmdline);
 
             // pthread_join(threads[i], NULL);
             // closing the connected socket
             // close(table->socket_client_fd);
 
 
+            send_msg_socket(&l1, table->socket_client_fd, table->cmd_output);
         }
-   
+
     }
-
-    // closing the listening socket
-    shutdown(table->socket_server_fd, SHUT_RDWR);
-
-    //gcc -I bash/includes bash/*/*.c server.c init.c ../utils/*.c  -o server && ./server
-    return 0;
-
 }

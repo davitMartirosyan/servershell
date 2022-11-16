@@ -50,18 +50,18 @@
 # include <arpa/inet.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "../../logger/logger.h"
 # include "../libft/libft.h"
 # include "structs.h"
 # include "builtins.h"
+# include "../../logger/logger.h"
+# include "../../utils/utils_header.h"
 
 
 /**********************************************/
 /*******************Server*********************/
 /**********************************************/
 t_socket_table *create_client_table(char *ip, int port);
-void send_msg(Logger *l, int fd, char* msg);
-void read_msg(Logger *l, int fd, char** msg);
+
 
 /**********************************************/
 /*******************Listing********************/
