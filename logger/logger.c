@@ -7,7 +7,7 @@ void mylog(Logger* log, char* state, int line, const char* file, char* format, .
 
     if (!log->wr_file)
     {
-        printf("%s [%s | %s] [line: %d, file: %s] : ", state, __DATE__, __TIME__, line, file);
+//        printf("%s [%s | %s] [line: %d, file: %s] : ", state, __DATE__, __TIME__, line, file);
         vprintf(format, args);
     }
     else
