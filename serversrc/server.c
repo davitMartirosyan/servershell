@@ -1,6 +1,6 @@
 #include "bash/includes/minishell_header.h"
 #include "exec.c"
-#include "structs.h"
+//#include "structs.h"
 
 #define PORT 8080
 #define EXIT_MSG "bye"
