@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   envpoints.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dmartiro <dmartiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 20:20:03 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/11/04 12:25:59 by user             ###   ########.fr       */
+/*   Updated: 2022/11/14 07:33:55 by dmartiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_header.h"
+#include "../includes/minishell_header.h"
 
 t_env *env_tokenizing(char **envp)
 {
@@ -35,7 +35,7 @@ t_env *env_tokenizing(char **envp)
    return (temp);
 }
 
-void add_paths(t_env **env, shell **table)
+void add_paths(t_env **env, t_table **table)
 {
     char **abs;
     t_env *tmp;

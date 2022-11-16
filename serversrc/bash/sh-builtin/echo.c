@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sabazyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:29:34 by sabazyan          #+#    #+#             */
-/*   Updated: 2022/11/04 12:32:51 by user             ###   ########.fr       */
+/*   Updated: 2022/10/25 14:30:10 by sabazyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_header.h"
+#include "../includes/minishell_header.h"
 
 int is_keyword(char *str)
 {

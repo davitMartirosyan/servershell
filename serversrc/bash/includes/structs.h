@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:36:09 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/11/04 12:45:10 by user             ###   ########.fr       */
+/*   Updated: 2022/11/16 11:52:42 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,24 @@
     " -> \b -> 8
 */
 
+typedef struct s_vars t_vars;
+typedef struct socket_table t_socket_table;
 typedef struct s_table t_table;
 typedef struct s_cmdline t_cmdline;
 typedef struct s_env t_en;
 typedef struct s_tok t_tok;
 typedef struct s_cmds t_cmds;
 typedef int (*t_built)(t_cmds *, t_table *);
+
+
+typedef struct s_vars
+{
+    int var;
+    int let;
+    int def;
+    int log;
+    int cconst;
+} t_vars;
 
 typedef enum s_types_t
 {
@@ -59,7 +71,7 @@ typedef enum s_types
 
 typedef struct s_cmdline
 {
-    t_list  *cmds;
+    t_cmds  *cmds;
     char    **env;
     pid_t   pid;
 }   t_cmdline;
@@ -70,6 +82,7 @@ typedef struct s_cmds
     char    *path;
     int     i_stream;
     int     o_stream;
+    struct  s_cmds *next;
 }   t_cmds;
 
 typedef struct s_env
@@ -87,17 +100,18 @@ typedef struct s_tok
     struct  s_tok *next;
 } t_tok;
 
-typedef struct shell{
+typedef struct s_table{
     char        **minienv;
     char        **paths;
     char        **reserved;
+    char        *err_handling;
     int         q_c[2];
     t_built     builtin[7];
     t_env       *env;
     t_tok       *token;
-} shell;
+} t_table;
 
-typedef struct s_table
+typedef struct socket_table
 {
     int     socket_client_fd;
     int     socket_server_fd;
@@ -119,9 +133,9 @@ typedef struct s_table
     char    *recive;
     char    *err;
     char    *warn;
-    char*   cmd_output;
-    int16_t  size_output;
+    char*   read_output;
+    int16_t  size_read;
     
-} t_table;
+} t_socket_table;
 
 #endif

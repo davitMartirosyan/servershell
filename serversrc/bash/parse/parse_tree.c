@@ -3,138 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 01:32:43 by dmartiro          #+#    #+#             */
-/*   Updated: 2022/11/04 12:29:10 by user             ###   ########.fr       */
+/*   Created: 2022/11/07 18:27:49 by root              #+#    #+#             */
+/*   Updated: 2022/11/15 20:14:57 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_header.h"
+#include "../includes/minishell_header.h"
 
-t_cmds *parsing(t_tok **token, shell *table, int count, char **envp);
-static char **args(t_tok **tokens);
-static int  typeis_arg(int type);
-static void put_arg(char *arg_place, char *arg);
-static int count_arguments(t_tok **tokens);
-
-
-t_cmds *parsing(t_tok **token, shell *table, int count, char **envp)
+t_cmds *parse(t_tok *token, t_table *table, char **envp)
 {
-    int arg_count;
-    t_cmds *cmds;
-    /*
-    cmds -> pid_t   pid;
-    cmds -> int     i_stream;
-    cmds -> int     o_stream;
-    cmds -> char    *cmd;
-    cmds -> char    **arg_pack;
-    cmds -> char    *path;
-    cmds -> char    **env;
-    cmds -> struct  s_cmds *next;
-    */
-   
-    
-    cmds = malloc(sizeof(t_cmds));
-    if(!cmds)
-        return (NULL);
-    arg_count = 0;
-    cmds->arg_pack = malloc(sizeof(char *) * (count + 1));
-    while((*token)->type != PIPE)
-    {
-        if(typeis_arg((*token)->type))
-        {
-            count++;
-            token = &(*token)->next;
-        }
-        token = &(*token)->next;
-    }
-    return (NULL);
+	t_cmds *cmds;
+	int _pipe;
+	char *arguments;
+	
+	cmds = malloc(sizeof(t_cmds));
+	if(!cmds)
+		return (NULL);
+	cmds->i_stream = 0;
+	cmds->o_stream = 1;
+	arguments = NULL;
+	parse_to(token, table, cmds, &arguments);
+	if(arguments)
+		cmds->arg_pack = ft_split(arguments, 1);
+	return (cmds);
 }
 
-t_cmds *parse_tree(shell *table, char **envp)
+void parse_to(t_tok *token, t_table *table, t_cmds *cmds, char **arguments)
 {
-    int     cout;
-	t_tok   *from;
-    t_cmds  *cmds;
-
-    from = table->token;
-    if(from != NULL)
-    {
-        cout = count_arguments(&from);
-        if(cout)
-            cmds = parsing(&from, table, cout, envp);
-    }
-    else
-        printf("There are no argumetns\n");
-    return (NULL);
+	int _pipe;
+	
+	_pipe = pipes(&token) + 1;
+	while(token != NULL)
+	{
+		if(typeis_arg(token->type))
+			*arguments = join_arguments(*arguments, 1, token->tok);
+		if(typeis_redirection(token->type))
+		{
+			select_filename(&token, cmds);
+			token = token->next;
+			continue;
+		}
+		if(typeis_heredoc(token->type))
+		{
+			heredoc(&token, cmds, table);
+			token = token->next;
+			continue;
+		}
+		// if(token->type == PIPE)
+		// {
+		// 	//Remove words from *arguments
+		// 	//Next node in cmds struct
+		// 	//check if _pipe is 0 or not
+		// 	//token pointer move after pipe symbol token
+		// 	//continue;
+		// }
+		token = token->next;
+	}
 }
 
-static int count_arguments(t_tok **tokens)
+t_cmdline *parse_tree(t_table *table, char **envp)
 {
-    int count;
-
-    count = 0;
-    while((*tokens) != NULL)
-    {
-        if(typeis_arg((*tokens)->type))
-            count++;
-        tokens = &(*tokens)->next;
-    }
-    return (count);
+	t_cmdline	*commands;
+	t_tok		*tokens;
+	
+	tokens = table->token;
+	if(tokens != NULL)
+	{
+		if(syntax_handling(tokens))
+		{
+			commands = malloc(sizeof(t_cmdline));
+			if(!commands)
+				return (NULL);
+			commands->cmds = parse(tokens, table, envp);
+		}
+		else
+		{
+			printf("%s - %s\n", SHELLERR, table->err_handling);
+			return (NULL);
+		}
+	}
+	return (commands);
 }
 
-static int typeis_arg(int type)
-{
-    if(type == WORD || type == EXP_FIELD)
-        return (1);
-    return (0);
-}
-
-static char **args(t_tok **tokens)
-{
-    t_tok *tmp;
-    int cout;
-    char **arguments;
-    int i;
-    
-    cout = 0;
-    tmp = (*tokens);
-    while(tmp != NULL)
-    {
-        if(typeis_arg(tmp->type))
-            cout++;
-        tmp = tmp->next;
-    }
-    if(cout == 0)
-        return (NULL);
-    arguments = malloc(sizeof(char *) * (cout + 1));
-    i = 0;
-    while(*tokens != NULL)
-    {
-        if(typeis_arg((*tokens)->type))
-        {
-            arguments[i] = malloc(sizeof(char) * ((*tokens)->len + 1));
-            put_arg(arguments[i], (*tokens)->tok);
-            i++;
-        }
-        (*tokens) = (*tokens)->next;
-    }
-    arguments[i] = '\0';
-    return (arguments);
-}
-
-static void put_arg(char *arg_place, char *arg)
-{
-    int i;
-    int len;
-
-    len = ft_strlen(arg);
-    i = 0;
-    while(i < len)
-    {
-        arg_place[i] = arg[i];
-        i++;
-    }
-    arg_place[i] = '\0';
-}
+//gcc -I includes */*.c minishell.c -lreadline -o minishell && ./minishell

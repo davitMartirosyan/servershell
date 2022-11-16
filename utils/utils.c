@@ -1,4 +1,4 @@
-#include "minishell_header.h"
+#include "../include/servershell.h"
 
 int check(int rtrn)
 {

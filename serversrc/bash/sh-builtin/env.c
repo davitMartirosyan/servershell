@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:32:26 by sabazyan          #+#    #+#             */
-/*   Updated: 2022/11/04 12:32:55 by user             ###   ########.fr       */
+/*   Updated: 2022/11/03 13:45:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_header.h"
+#include "../includes/minishell_header.h"
 
 void print_env(char *cmd, char *env[])
 {

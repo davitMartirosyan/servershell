@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabazyan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:39:57 by sabazyan          #+#    #+#             */
-/*   Updated: 2022/10/25 14:50:22 by sabazyan         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:49:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct s_tab{
     t_env       *env;
 } t_tab;
+
 
 //main functions
 void    print_echo(char *cmd);
