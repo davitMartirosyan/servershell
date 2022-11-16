@@ -4,22 +4,26 @@
 #define PORT 8080
 #define EXIT_MSG "bye"
 #include <errno.h>
+#include <unistd.h>
 
 typedef struct args
 {
-    t_table* table;
-    shell* bash;
-}args;
-
+    int fd;
+    char** envp; 
+} args;
 
 
 ////////////////////////////
-void* thread_f(void *fd)
+void* thread_f(void *arg)
 {
-    shell* bash = malloc(sizeof(shell));
-    int client_fd = *((int*)fd);
+
     char *cmd_line;
+    int client_fd = ((args *)arg)->fd;
     printf("Client fd  %d\n", client_fd);
+    shell* bash = malloc(sizeof(shell));
+    create_shell(((args *)arg)->envp, &bash);
+    printf("i am in THread function\n");
+    
     
 while(1)
     {
@@ -33,7 +37,7 @@ while(1)
         break;
 
     // //////////////////////////////in this section we do lex analyzation and execution 
-    lexical_analyzer(table->cmdline, bash);
+    // lexical_analyzer(table->cmdline, bash);
     // // execution(table->token, *paths[]); //paths harcnel Davoic vortex a pahel, u poxel tokeni pahy henc funkciayum
 
     char *cmd_output = "massage arrived ^ !!))";
@@ -51,18 +55,18 @@ while(1)
 int main(int ac, char **av, char **envp)
 {
 
+    //creating 20 thread identifiers
     pthread_t threads[20];
+   
     t_table *table;
-    shell   *bash;
-    create_shell(envp, &bash);
-    char    *cmdline;
-
+    
 
     struct sockaddr_in mysock;
 
     table = malloc(sizeof(t_table));
     if(!table)
         return 0;
+
     table->type  = AF_INET;
     table->proto = SOCK_STREAM;
     table->port  = PORT;
@@ -102,7 +106,8 @@ int main(int ac, char **av, char **envp)
 
         //goes to while loop becouse it will continiusly listen 
         //and then when getting some recuest it gonna check the array
-         
+        
+
         for(int i =0;i < 20 ;i++)
         {
             if(listen(table->socket_server_fd, 3) < 0)
@@ -137,15 +142,18 @@ int main(int ac, char **av, char **envp)
             //now as long as there are free threads we can use their identifiers
             //and create some connections with coresponding clients 
             int rc;
-
-            // args *arg_list;
-            // arg_list = malloc(sizeof(args));
-            // arg_list->table = table;
-            // arg_list->bash = bash;
-
+            
+            
             //argument is arg_list
-            int fd = table->socket_client_fd;
-            rc = pthread_create(&threads[i], NULL, thread_f, &fd);
+            // int fd = table->socket_client_fd;
+            // printf("%s\n", args_->envp[5]);
+            printf("__________________________\n");
+            args *args_;
+            args_ = malloc(sizeof(args));
+            args_->fd = table->socket_client_fd;
+            args_->envp = envp;
+
+            rc = pthread_create(&threads[i], NULL, thread_f, args_);
             printf("thread crete result is %d\n ", rc);
             if (rc != 0) //if thread creat works it returns 0, else it returns some num
             {

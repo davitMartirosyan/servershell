@@ -8,7 +8,7 @@
 #define IP "127.0.0.1"
 #define PORT 8080
 #define EXIT_MSG "bye"
-#define CLIENT_MSG "Am I connected?\n"
+#define CLIENT_MSG "   Am I connected?\n"
 #define INTERVAL_REQUEST 2000
 
 int client_fd = 0;
@@ -89,7 +89,7 @@ int main(void) {
             
             //printf("Lilia send done\n");
             
-            recv(table->socket_client_fd, server_msg, 25, 0);
+            recv(table->socket_client_fd, server_msg, 100, 0);
             if(!strcmp(server_msg, "Yes. You're connected\n")){
                 time_t t;
                 time(&t);

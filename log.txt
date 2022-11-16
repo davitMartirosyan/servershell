@@ -42,3 +42,18 @@
 [Trace] [Nov 15 2022 | 17:13:19] [line: 124, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
 [Trace] [Nov 15 2022 | 17:13:19] [line: 115, file: clientsrc/client.c] : Client: reading command ~ kfjh
 [Trace] [Nov 15 2022 | 17:13:19] [line: 124, file: clientsrc/client.c] : Client: command output ~ hello aper!!))
+[Error] [Nov 16 2022 | 10:27:13] [line: 51, file: clientsrc/client.c] : Could not resolve connection! ~ 4
+[Error] [Nov 16 2022 | 10:27:13] [line: 51, file: clientsrc/client.c] : Could not resolve connection! ~ 4
+[Error] [Nov 16 2022 | 10:55:09] [line: 51, file: clientsrc/client.c] : Could not resolve connection! ~ 4
+[Trace] [Nov 16 2022 | 11:13:59] [line: 114, file: clientsrc/client.c] : Client: reading command ~ 
+[Trace] [Nov 16 2022 | 11:13:59] [line: 123, file: clientsrc/client.c] : Client: command output ~ ssage arrived ^ !!))
+[Trace] [Nov 16 2022 | 11:18:51] [line: 114, file: clientsrc/client.c] : Client: reading command ~ Yes
+[Trace] [Nov 16 2022 | 11:18:51] [line: 123, file: clientsrc/client.c] : Client: command output ~ ssage arrived ^ !!))
+[Trace] [Nov 16 2022 | 11:18:51] [line: 114, file: clientsrc/client.c] : Client: reading command ~ o hello papagena plebera gonna papaya
+[Trace] [Nov 16 2022 | 11:18:51] [line: 123, file: clientsrc/client.c] : Client: command output ~ massage arrived ^ !!))bi‘
+[Error] [Nov 16 2022 | 11:49:31] [line: 51, file: clientsrc/client.c] : Could not resolve connection! ~ 4
+[Trace] [Nov 16 2022 | 11:52:45] [line: 114, file: clientsrc/client.c] : Client: reading command ~ hello
+[Trace] [Nov 16 2022 | 11:52:45] [line: 123, file: clientsrc/client.c] : Client: command output ~ massage arrived ^ !!))
+[Trace] [Nov 16 2022 | 11:52:45] [line: 114, file: clientsrc/client.c] : Client: reading command ~ how you doing
+[Trace] [Nov 16 2022 | 11:52:45] [line: 123, file: clientsrc/client.c] : Client: command output ~ ssage arrived ^ !!))
+[Trace] [Nov 16 2022 | 11:52:45] [line: 114, file: clientsrc/client.c] : Client: reading command ~ bye
