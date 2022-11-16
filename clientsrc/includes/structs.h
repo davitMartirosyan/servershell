@@ -22,6 +22,7 @@
 
 typedef struct s_table t_table;
 typedef struct s_cmdline t_cmdline;
+typedef struct s_socket_table t_socket_table;
 typedef struct s_env t_en;
 typedef struct s_tok t_tok;
 typedef struct s_cmds t_cmds;
@@ -123,6 +124,6 @@ typedef struct socket_table
     char*   read_output;
     int16_t  size_read;
     
-} t_table;
+} t_socket_table;
 
 #endif

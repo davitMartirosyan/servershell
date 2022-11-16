@@ -6,7 +6,7 @@
 
 int main(void)
 {
-    t_table *table;
+    t_socket_table *table;
 
     table = create_client_table(IP, PORT);
     if(!table)
