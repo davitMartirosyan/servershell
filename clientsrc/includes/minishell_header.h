@@ -42,6 +42,7 @@
 # include <stdint.h>
 # include <signal.h>
 # include <sys/types.h>
+# include <errno.h>
 # include <sys/wait.h>
 # include <sys/socket.h>
 # include <fcntl.h>
@@ -59,13 +60,14 @@
 /*******************Server*********************/
 /**********************************************/
 t_socket_table *create_client_table(char *ip, int port);
-
+void send_msg(Logger *l, int fd, char* msg);
+void read_msg(Logger *l, int fd, char** msg);
 
 /**********************************************/
 /*******************Listing********************/
 /**********************************************/
 t_tok   *new_token(int len, char *token, int type);
-void	add(t_tok **lst, t_tok *new);
+void	add(t_tok **lst, t_tok *neww);
 
 
 /**********************************************/

@@ -42,8 +42,10 @@
 # include <stdint.h>
 # include <signal.h>
 # include <sys/types.h>
+# include <errno.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <sys/socket.h>
 # include <netinet/in.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -56,8 +58,9 @@
 /*******************Server*********************/
 /**********************************************/
 t_socket_table *create_server_table(int port);
-void read_msg(int fd, char** msg, int16_t* size_msg);
-void send_msg(int fd, char* msg, int16_t size_msg);
+void send_msg_server(int fd, char* msg);
+void read_msg_server(int fd, char** msg);
+
 /**********************************************/
 /*******************Listing********************/
 /**********************************************/
