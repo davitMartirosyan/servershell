@@ -1,8 +1,8 @@
 #include "minishell_header.h"
 
-t_table *create_client_table(char *ip, int port)
+t_socket_table *create_client_table(char *ip, int port)
 {
-    t_table *table;
+    t_socket_table *table;
     struct sockaddr_in fields;
 
     table = malloc(sizeof(t_table));

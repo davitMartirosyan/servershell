@@ -43,10 +43,15 @@
 # include <signal.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/socket.h>
+# include <cstdint>
 # include <fcntl.h>
 # include <netinet/in.h>
+# include <arpa/inet.h>
+# include <syslog.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "../../logger/logger.h"
 # include "../libft/libft.h"
 # include "structs.h"
 # include "builtins.h"
@@ -55,7 +60,7 @@
 /**********************************************/
 /*******************Server*********************/
 /**********************************************/
-t_table *create_server_table(int port);
+t_socket_table *create_client_table(char *ip, int port);
 
 
 /**********************************************/

@@ -116,6 +116,7 @@ typedef struct socket_table
     int     socket_client_fd;
     int     socket_server_fd;
     int     connection;
+    char    *cmd_output;
     int     port;
     int     type;
     int     proto;

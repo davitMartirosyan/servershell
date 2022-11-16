@@ -39,24 +39,25 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 # include <signal.h>
 # include <sys/types.h>
-# include <sys/stat.h>
 # include <sys/wait.h>
 # include <fcntl.h>
-# include <netinet.h>
-# include <arpa/inet.h>
+# include <netinet/in.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "../../../logger/logger.h"
 # include "../libft/libft.h"
-# include "./structs.h"
-# include "./builtins.h"
+# include "structs.h"
+# include "builtins.h"
 
 /**********************************************/
 /*******************Server*********************/
 /**********************************************/
-t_table *create_client_table(char *ip, int port);
-
+t_socket_table *create_server_table(int port);
+void read_msg(int fd, char** msg, int16_t* size_msg);
+void send_msg(int fd, char* msg, int16_t size_msg);
 /**********************************************/
 /*******************Listing********************/
 /**********************************************/

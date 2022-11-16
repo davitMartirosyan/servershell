@@ -22,10 +22,11 @@
 
 typedef struct s_table t_table;
 typedef struct s_cmdline t_cmdline;
-typedef struct s_socket_table t_socket_table;
+typedef struct socket_table t_socket_table;
 typedef struct s_env t_en;
 typedef struct s_tok t_tok;
 typedef struct s_cmds t_cmds;
+typedef struct s_vars t_vars;
 typedef int (*t_built)(t_cmds *, t_table *);
 
 typedef enum s_types_t
@@ -38,6 +39,15 @@ typedef enum s_types_t
     ERR_BINDING_MSG,
     ERR_LISTENING_MSG
 }t_types_t;
+
+typedef struct s_vars
+{
+    int var;
+    int let;
+    int def;
+    int log;
+    int cconst;
+} t_vars;
 
 typedef enum s_types
 {
@@ -56,7 +66,6 @@ typedef enum s_types
     PIPE,          // 12 |
     UNDEFINED      // 13
 } t_type;
-
 
 typedef struct s_cmdline
 {
@@ -89,7 +98,7 @@ typedef struct s_tok
     struct  s_tok *next;
 } t_tok;
 
-typedef struct shell{
+typedef struct s_table{
     char        **minienv;
     char        **paths;
     char        **reserved;
@@ -97,13 +106,14 @@ typedef struct shell{
     t_built     builtin[7];
     t_env       *env;
     t_tok       *token;
-} shell;
+} t_table;
 
 typedef struct socket_table
 {
     int     socket_client_fd;
     int     socket_server_fd;
     int     connection;
+    char    *cmd_output;
     int     port;
     int     type;
     int     proto;

@@ -1,3 +1,5 @@
+#ifndef LOGGER_H
+#define LOGGER_H
 # include <stdio.h>
 # include <string.h>
 # include <stdarg.h>
@@ -21,3 +23,5 @@ void log_init(Logger *log);
 void log_in_file(Logger *log, bool wr_file);
 void log_change_file(Logger *log, char* file_path);
 void log_close(Logger *log);
+
+#endif
