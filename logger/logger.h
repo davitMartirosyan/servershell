@@ -1,5 +1,6 @@
 #ifndef LOGGER_H
 #define LOGGER_H
+
 # include <stdio.h>
 # include <string.h>
 # include <stdarg.h>

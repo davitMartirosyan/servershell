@@ -1,3 +1,0 @@
-[Error] [Nov 16 2022 | 12:57:39] [line: 51, file: client.c] : Could not resolve connection! ~ 4
-[Error] [Nov 16 2022 | 12:57:39] [line: 51, file: client.c] : Could not resolve connection! ~ 4
-[Error] [Nov 16 2022 | 12:57:39] [line: 51, file: client.c] : Could not resolve connection! ~ 4

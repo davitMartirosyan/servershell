@@ -1,6 +1,5 @@
 #include "minishell_header.h"
 #include "../utils/send_read_msg.c"
-#include "../logger/logger.h"
 #include <netdb.h>      /*  for gethostby...() and getnet...() and getserver...()   */
 
 

@@ -1,0 +1,2 @@
+[Error] [Nov 16 2022 | 13:19:02] [line: 50, file: clientsrc/client.c] : Could not resolve connection! ~ 4
+[Error] [Nov 16 2022 | 13:19:02] [line: 50, file: clientsrc/client.c] : Could not resolve connection! ~ 4
