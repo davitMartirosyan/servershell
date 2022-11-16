@@ -44,6 +44,8 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <netinet.h>
+# include <arpa/inet.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"

@@ -4,7 +4,7 @@ t_socket_table *create_server_table(int port)
 {
     t_socket_table *table;
 
-    struct sockaddr_in mysock;
+    struct ssockaddr_in mysock;
 
     table = malloc(sizeof(t_socket_table));
     if(!table)
