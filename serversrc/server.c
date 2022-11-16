@@ -1,4 +1,5 @@
 #include "bash/includes/minishell_header.h"
+#include "exec.c"
 
 #define PORT 8080
 #define EXIT_MSG "bye"
@@ -30,14 +31,14 @@ void* thread_f(void *arg)
     char *cmd_line;
     int client_fd = ((args *)arg)->fd;
     printf("Client fd  %d\n", client_fd);
-    t_table* bash = malloc(sizeof(t_table));
-    create_shell(((args *)arg)->envp, &bash);
+    t_table* table = malloc(sizeof(t_table));
+    create_shell(((args *)arg)->envp, &table);
     printf("i am in THread function\n");
 
 
     while(1)
     {
-
+        t_cmdline *parser;
 
         read_msg_socket(&l, client_fd, &cmd_line);
 
@@ -46,11 +47,12 @@ void* thread_f(void *arg)
         if (!strcmp(cmd_line, EXIT_MSG))
             break;
 
-        // //////////////////////////////in this section we do lex analyzation and execution
-        // lexical_analyzer(table->cmdline, bash);
-        // // execution(table->token, *paths[]); //paths harcnel Davoic vortex a pahel, u poxel tokeni pahy henc funkciayum
-
-        char *cmd_output = "massage arrived ^ !!))";
+        //in this section we do lex analyzation and execution 
+        // lexical_analyzer(cmd_line, table);
+        // parser = parse_tree(table, ((args *)arg)->envp);
+        // execution(parser, table);
+    
+        char *cmd_output = "massage arrived";
 
         send_msg_socket(&l, client_fd, cmd_output);
 
@@ -159,7 +161,6 @@ int main(int ac, char **av, char **envp)
             //argument is arg_list
             // int fd = table->socket_client_fd;
             // printf("%s\n", args_->envp[5]);
-            printf("__________________________\n");
             args *args_;
             args_ = malloc(sizeof(args));
             args_->fd = table->socket_client_fd;
@@ -173,16 +174,16 @@ int main(int ac, char **av, char **envp)
                 // exit(-1);
                 fprintf(stderr, "%s\n", strerror(errno));
             }
-            read_msg_socket(&l1, table->socket_client_fd, &table->cmdline);
+            // read_msg_socket(&l1, table->socket_client_fd, &table->cmdline);
 
-            LOG_TRACE(&l1, "Server: command ~ %s\n", table->cmdline);
+            // LOG_TRACE(&l1, "Server: command ~ %s\n", table->cmdline);
 
             // pthread_join(threads[i], NULL);
             // closing the connected socket
             // close(table->socket_client_fd);
 
 
-            send_msg_socket(&l1, table->socket_client_fd, table->cmd_output);
+            // send_msg_socket(&l1, table->socket_client_fd, table->cmd_output);
         }
 
     }

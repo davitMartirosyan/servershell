@@ -1,0 +1,8 @@
+[Error] [Nov 16 2022 | 16:16:08] [line: 111, file: serversrc/server.c] : Binding Error ~ 5
+[Error] [Nov 16 2022 | 16:44:15] [line: 113, file: serversrc/server.c] : Binding Error ~ 5
+[Error] [Nov 16 2022 | 16:53:26] [line: 113, file: serversrc/server.c] : Binding Error ~ 5
+[Error] [Nov 16 2022 | 16:53:26] [line: 113, file: serversrc/server.c] : Binding Error ~ 5
+[Error] [Nov 16 2022 | 16:53:26] [line: 113, file: serversrc/server.c] : Binding Error ~ 5
+[Error] [Nov 16 2022 | 16:53:26] [line: 113, file: serversrc/server.c] : Binding Error ~ 5
+[Error] [Nov 16 2022 | 16:53:26] [line: 113, file: serversrc/server.c] : Binding Error ~ 5
+[Error] [Nov 16 2022 | 16:54:07] [line: 113, file: serversrc/server.c] : Binding Error ~ 5

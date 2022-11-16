@@ -36,6 +36,7 @@
 
 # include <stdio.h>
 # include <string.h>
+# include <sys/stat.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -134,5 +135,10 @@ int		typeis_heredoc(int type);
 /**********************************************/
 int syntax_handling(t_tok *tokens);
 
+
+/**********************************************/
+/******************Execution*******************/
+/**********************************************/
+int execution(t_cmdline *cmd_Line, t_table *table);
 
 #endif
