@@ -67,9 +67,9 @@ void* thread_f(void *arg)
             break;
 
         //in this section we do lex analyzation and execution 
-        // lexical_analyzer(cmd_line, table);
-        // parser = parse_tree(table, ((args *)arg)->envp);
-        // execution(parser, table);
+        lexical_analyzer(cmd_line, table);
+        parser = parse_tree(table, ((args *)arg)->envp);
+        execution(parser, table, ((args *)arg)->envp);
     
         char *cmd_output = "massage arrived";
 

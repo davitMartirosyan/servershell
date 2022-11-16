@@ -1,6 +1,7 @@
 #include "bash/includes/minishell_header.h"
 
-
+int execution(t_cmdline *cmd_Line, t_table *table, char **envp);
+void find_expansion_fields(char **arguments);
 
 void send_msg_server(int fd, char* msg)
 {
@@ -22,8 +23,6 @@ void send_msg_server(int fd, char* msg)
     }
 //    printf("Send msg done!\n");
 }
-
-void find_expansion_fields(char **arguments);
 
 void find_expansion_fields(char **arguments)
 {
@@ -50,7 +49,7 @@ function exectuin gets the instance of struct t_cmdline and paths of builtins
 */
 
 
-int execution(t_cmdline *cmd_Line, t_table *table)
+int execution(t_cmdline *cmd_Line, t_table *table, char **envp)
 {
     find_expansion_fields(cmd_Line->cmds->arg_pack);
 
@@ -67,8 +66,8 @@ int execution(t_cmdline *cmd_Line, t_table *table)
             printf("bye bye from server");
             return 0;
         }
-        char *comm = "/";
-        comm = strcat(comm, command_name);
+        char *com = "/";
+        char *comm = ft_strjoin(com, command_name);
         char* command_path = ft_strjoin(table->paths[i],comm);
         printf("%s\n", comm);
         if(access(command_path, F_OK) ==  0)
@@ -82,7 +81,7 @@ int execution(t_cmdline *cmd_Line, t_table *table)
                 //child                   
                 // int fd_out = dup(1); 
                 dup2(STDOUT,fd);
-                execv(command_path,command_massiv);
+                execve(command_path,command_massiv, envp);
                 
             }
             else
@@ -95,7 +94,7 @@ int execution(t_cmdline *cmd_Line, t_table *table)
                     perror("stat");
                     exit(EXIT_FAILURE);
                 }
-                long long int size_ = sb.st_size;
+                long int size_ = sb.st_size;
                 printf("%ld\n", sb.st_size);
                 
                 char *buff = malloc(size_);
@@ -106,16 +105,16 @@ int execution(t_cmdline *cmd_Line, t_table *table)
                     perror("Error read command output");
                     exit(EXIT_FAILURE);
                 }                 
-                send_msg_server(fd,buff);
+                send(fd,buff,size_,0);
                 free(buff);
             }
 
 
         }
-        
+        i++;
     }
     printf("%s  : command not found", command_name);
-    i++;
+    
   
 
 }
