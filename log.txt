@@ -6,3 +6,4 @@
 [Error] [Nov 16 2022 | 16:53:26] [line: 113, file: serversrc/server.c] : Binding Error ~ 5
 [Error] [Nov 16 2022 | 16:53:26] [line: 113, file: serversrc/server.c] : Binding Error ~ 5
 [Error] [Nov 16 2022 | 16:54:07] [line: 113, file: serversrc/server.c] : Binding Error ~ 5
+[Error] [Nov 16 2022 | 17:22:51] [line: 132, file: serversrc/server.c] : Binding Error ~ 5

@@ -1,8 +1,10 @@
 #include "bash/includes/minishell_header.h"
 #include "exec.c"
+#include "structs.h"
 
 #define PORT 8080
 #define EXIT_MSG "bye"
+#define SERVERMSG "Yes. You're connected\n"
 
 //int client_fd = 0;
 int server_fd = 0;
@@ -38,6 +40,23 @@ void* thread_f(void *arg)
 
     while(1)
     {
+
+            char serv_msg[] = {SERVERMSG};
+            char* client_msg;
+            client_msg = malloc(20);
+
+/////////////////////////////////////PING///////////////////////////////////////////////
+            int read_m = recv(client_fd, client_msg, 20, 0);
+            if (read_m > 0)
+                printf("read msg is ~ %s\n", client_msg);
+            if(!strcmp(client_msg, "Am I connected?\n"))
+            {
+               // printf("mtel em");
+                send(client_fd, serv_msg, strlen(serv_msg), 0);
+            }
+
+/////////////////////////////////////////////////////////////////////////////////////
+       
         t_cmdline *parser;
 
         read_msg_socket(&l, client_fd, &cmd_line);
