@@ -16,12 +16,12 @@ BASH_OBJ = $(patsubst %.c, $(BASH_OBJ_DIR)%.o, $(notdir $(BASH_SRC)))
 all: build_dir server client
 
 build_dir:
-	mkdir $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(BASH_OBJ_DIR)
 
 server: $(OBJ_DIR)server.o $(OBJ_DIR)logger.o $(OBJ_DIR)send_read_msg.o $(BASH_OBJ)
 	$(CC) $(SERVER_INCLUDES) $^ $(SERVER_CFLAGS) server
 $(BASH_OBJ_DIR)%.o: $(BASH_SRC_DIR)%.c
-	mkdir $(BASH_OBJ_DIR)
 	$(CC) -c $< -o $@
 $(OBJ_DIR)server.o: serversrc/server.c
 	$(CC) -c $^ -o $@
