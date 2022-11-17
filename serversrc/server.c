@@ -85,7 +85,7 @@ int main(int ac, char **av, char **envp)
 {
     Logger l1;
     log_init(&l1);
-    log_in_file(&l1, true);
+//    log_in_file(&l1, true);
     l = l1;
     
     //creating 20 thread identifiers

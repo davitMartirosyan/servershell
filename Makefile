@@ -1,43 +1,42 @@
-#CC = gcc
-#SERVER_FLAGS=-I serversrc/bash/includes/
-#CLIENT_FLAGS=-I clientsrc/includes/
-#all:
-#	$(CC) $(SERVER_FLAGS) utils/send_read_msg.c serversrc/bash/*/*.c logger/*.c  serversrc/server.c -lpthread -lreadline -o server
-#	$(CC) $(CLIENT_FLAGS) utils/send_read_msg.c clientsrc/*.c logger/*.c -lreadline -o client
-#clean:
-#	rm -rf *.out
-
-#ODIR = build
-#
-#$(ODIR)/%.o: serversrc/bash/%.c
-#	$(CC) -c $< -o $@
-
 CC = gcc
-SERVER_FLAGS=-I serversrc/bash/includes/
-CLIENT_FLAGS=-I clientsrc/includes/
+
+OBJ_DIR = ./build/
+BASH_SRC_DIR = ./serversrc/bash/*/
+BASH_OBJ_DIR = ./build/bash/
+
+SERVER_INCLUDES = -I serversrc/bash/includes/
+CLIENT_INCLUDES = -I clientsrc/includes/
+
+SERVER_CFLAGS = -lpthread -lreadline -o
+CLIENT_CFLAGS = -lreadline -o
+
+BASH_SRC = $(wildcard $(BASH_SRC_DIR)*.c)
+BASH_OBJ = $(patsubst $(BASH_SRC_DIR)%.c, $(BASH_OBJ_DIR)%.o, $(BASH_SRC))
 
 all: server client
 
-server: server.o logger.o send_read_msg.o
-	$(CC) $(SERVER_FLAGS) serversrc/bash/*/*.c logger.o server.o send_read_msg.o -lpthread -lreadline -o server
-server.o: serversrc/server.c
-		$(CC) -c serversrc/server.c
+server: $(OBJ_DIR)server.o $(OBJ_DIR)logger.o $(OBJ_DIR)send_read_msg.o
+	$(CC) $(SERVER_INCLUDES) $(BASH_OBJ) $(OBJ_DIR)logger.o $(OBJ_DIR)server.o $(OBJ_DIR)send_read_msg.o $(SERVER_CFLAGS) server
+$(OBJ_DIR)server.o: serversrc/server.c
+	$(CC) -c serversrc/server.c -o $(OBJ_DIR)server.o
+$(BASH_OBJ_DIR)%.o: $(BASH_SRC_DIR)%.c
+	$(CC) -c $< -o $@
 
 
-client: client.o init_client.o logger.o send_read_msg.o
-	$(CC) $(CLIENT_FLAGS) client.o init_client.o logger.o send_read_msg.o -lreadline -o client
-client.o: clientsrc/client.c logger/logger.h
-	$(CC) -c clientsrc/client.c
-init_client.o: clientsrc/init_client.c
-	$(CC) -c clientsrc/init_client.c
+client: $(OBJ_DIR)client.o $(OBJ_DIR)init_client.o $(OBJ_DIR)logger.o $(OBJ_DIR)send_read_msg.o
+	$(CC) $(CLIENT_INCLUDES) $(OBJ_DIR)client.o $(OBJ_DIR)init_client.o $(OBJ_DIR)logger.o $(OBJ_DIR)send_read_msg.o $(CLIENT_CFLAGS) client
+$(OBJ_DIR)client.o: clientsrc/client.c logger/logger.h
+	$(CC) -c clientsrc/client.c -o $(OBJ_DIR)client.o
+$(OBJ_DIR)init_client.o: clientsrc/init_client.c
+	$(CC) -c clientsrc/init_client.c -o $(OBJ_DIR)init_client.o
 
 
-logger.o: logger/logger.c logger/logger.h
-	$(CC) -c logger/logger.c
-send_read_msg.o: utils/send_read_msg.c utils/utils_header.h
-	$(CC) -c utils/send_read_msg.c
+$(OBJ_DIR)logger.o: logger/logger.c logger/logger.h
+	$(CC) -c logger/logger.c -o $(OBJ_DIR)logger.o
+$(OBJ_DIR)send_read_msg.o: utils/send_read_msg.c utils/utils_header.h
+	$(CC) -c utils/send_read_msg.c -o $(OBJ_DIR)send_read_msg.o
 
 clean:
-	rm -rf server client *.o
+	rm server client $(OBJ_DIR)*.o $(BASH_OBJ_DIR)*.o
 clean_log:
 	rm -rf log.txt

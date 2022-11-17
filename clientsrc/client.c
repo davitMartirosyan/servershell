@@ -21,6 +21,7 @@ int main(void) {
     log_init(&l1);
     l = l1;
 //    log_in_file(&l1, true);
+
     char cl_msg[] = {CLIENT_MSG};
     char* server_msg;
     server_msg = malloc(25);
