@@ -85,9 +85,9 @@ int main(int ac, char **av, char **envp)
 {
     Logger l1;
     log_init(&l1);
-    l = l1;
     log_in_file(&l1, true);
-
+    l = l1;
+    
     //creating 20 thread identifiers
     pthread_t threads[20];
 
@@ -183,7 +183,7 @@ int main(int ac, char **av, char **envp)
             args *args_;
             args_ = malloc(sizeof(args));
             args_->fd = table->socket_client_fd;
-            args_->envp = envp;
+            args_->envp = envp ;
 
             rc = pthread_create(&threads[i], NULL, thread_f, args_);
             printf("thread crete result is %d\n ", rc);
