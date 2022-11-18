@@ -20,7 +20,7 @@ int main(void) {
     Logger l1;
     log_init(&l1);
     l = l1;
-//    log_in_file(&l1, true);
+    // log_in_file(&l1, true);
 
     char cl_msg[] = {CLIENT_MSG};
     char* server_msg;
@@ -49,16 +49,22 @@ int main(void) {
         while (1) {
 
             ///////////////////////////////////PING/////////////////////////////////////////////
-            struct hostent* resolv;
-            resolv = gethostbyname(IP);
             
+            // clock_t interval,init_send;
+            // int timer_ms = 0;
+            //timer_ms = IntervalTimer(&interval,&init_send);
             time_t t1;
             time(&t1);
-            
+            // printf("Timer starts\n");
+            // take_enter();
+            // printf("Timer ends\n");
             time_t t2;
             time(&t2);
             double t = t2 - t1;
             double time_taken = ((double)t); // calculate the elapsed time
+            //printf("The program took %f seconds to execute", time_taken);
+            // struct hostent* resolv;
+            // resolv = gethostbyname(IP);
             if(time_taken <= INTERVAL_REQUEST)
             {
                 int send_m = send(table->socket_client_fd, cl_msg, strlen(cl_msg), 0);
@@ -67,17 +73,27 @@ int main(void) {
             }
 
 
+            
+           
             //printf("Lilia send done\n");
             
             recv(table->socket_client_fd, server_msg, 25, 0);
             if(!strcmp(server_msg, "Yes. You're connected\n")){
                 time_t t;
                 time(&t);
-                printf(" YOU ARE CONNECTED TO THIS IP [%s], Exact time is: %s\n", resolv->h_name, ctime(&t));
+                printf(" YOU ARE CONNECTED, Exact time is: %s\n", ctime(&t));
             }
             else{
                 printf("YOU LOST CONNECTION\n");
             }
+            //read_msg(table->socket_client_fd, &server_msg);
+            // int recv_m = recv(table->socket_client_fd, server_msg, 25, 0);
+            // if(recv_m < 0){
+            //     printf("Can't receive msg from server(Lilia)");
+            // }
+            // else{
+            //     printf("Recieved msg from server(Lilia)");
+            // }
 ///////////////////////////////////////////////////////////////////////////////
 
             // reading command

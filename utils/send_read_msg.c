@@ -10,7 +10,7 @@ void send_msg_socket(Logger *l, int fd, char* msg)
         LOG_ERROR(l, "Error, send size of command: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
-    LOG_TRACE(l, "Send msg size done! ~ %d\n", size_msg);
+    // LOG_TRACE(l, "Send msg size done! ~ %d\n", size_msg);
 
     // send command
     if(send(fd, msg, size_msg, 0) < 0)
@@ -18,7 +18,7 @@ void send_msg_socket(Logger *l, int fd, char* msg)
         LOG_ERROR(l, "Error, send command: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
-    LOG_TRACE(l, "Send msg done! ~ %s\n", msg);
+    // LOG_TRACE(l, "Send msg done! ~ %s\n", msg);
 }
 
 void read_msg_socket(Logger *l, int fd, char** msg)
@@ -30,7 +30,7 @@ void read_msg_socket(Logger *l, int fd, char** msg)
         LOG_ERROR(l, "Error, read size of command output: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
-    LOG_TRACE(l, "read size of msg ~ %d\n", size_msg);
+    // LOG_TRACE(l, "read size of msg ~ %d\n", size_msg);
 
     //read command output
     *msg = (char *)(malloc(size_msg));
@@ -38,6 +38,6 @@ void read_msg_socket(Logger *l, int fd, char** msg)
         LOG_ERROR(l, "Error read command output: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
-    LOG_TRACE(l, "read msg ~ %s\n", *msg);
+    // LOG_TRACE(l, "read msg ~ %s\n", *msg);
 
 }

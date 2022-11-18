@@ -139,6 +139,6 @@ int syntax_handling(t_tok *tokens);
 /**********************************************/
 /******************Execution*******************/
 /**********************************************/
-int execution(t_cmdline *cmd_Line, t_table *table, char **envp);
+void execution(Logger *l, int client_fd, t_cmdline *cmd_Line, t_table *table, char **envp);
 
 #endif

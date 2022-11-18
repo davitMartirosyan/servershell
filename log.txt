@@ -1,1 +1,40 @@
 [Error] [Nov 16 2022 | 18:36:09] [line: 132, file: serversrc/server.c] : Binding Error ~ 5
+[Trace] [Nov 18 2022 | 15:46:29] [line: 102, file: clientsrc/client.c] : Client: reading command ~ ls
+[Trace] [Nov 18 2022 | 15:46:29] [line: 13, file: utils/send_read_msg.c] : Send msg size done! ~ 2
+[Trace] [Nov 18 2022 | 15:46:29] [line: 21, file: utils/send_read_msg.c] : Send msg done! ~ ls
+[Trace] [Nov 18 2022 | 15:46:29] [line: 33, file: utils/send_read_msg.c] : read size of msg ~ 90
+[Trace] [Nov 18 2022 | 15:46:29] [line: 41, file: utils/send_read_msg.c] : read msg ~ build
+client
+clientsrc
+input.txt
+logger
+log.txt
+Makefile
+README.md
+server
+serversrc
+utils
+ beginning-of-q
+[Trace] [Nov 18 2022 | 15:46:29] [line: 111, file: clientsrc/client.c] : Client: command output ~ build
+client
+clientsrc
+input.txt
+logger
+log.txt
+Makefile
+README.md
+server
+serversrc
+utils
+ beginning-of-q
+[Trace] [Nov 18 2022 | 15:46:29] [line: 102, file: clientsrc/client.c] : Client: reading command ~ pwd
+[Trace] [Nov 18 2022 | 15:46:29] [line: 13, file: utils/send_read_msg.c] : Send msg size done! ~ 3
+[Trace] [Nov 18 2022 | 15:46:29] [line: 21, file: utils/send_read_msg.c] : Send msg done! ~ pwd
+[Trace] [Nov 18 2022 | 15:46:29] [line: 33, file: utils/send_read_msg.c] : read size of msg ~ 38
+[Trace] [Nov 18 2022 | 15:46:29] [line: 41, file: utils/send_read_msg.c] : read msg ~ /home/user/Desktop/newest/servershell
+
+[Trace] [Nov 18 2022 | 15:46:29] [line: 111, file: clientsrc/client.c] : Client: command output ~ /home/user/Desktop/newest/servershell
+
+[Trace] [Nov 18 2022 | 15:46:29] [line: 102, file: clientsrc/client.c] : Client: reading command ~ bye
+[Trace] [Nov 18 2022 | 15:46:29] [line: 13, file: utils/send_read_msg.c] : Send msg size done! ~ 3
+[Trace] [Nov 18 2022 | 15:46:29] [line: 21, file: utils/send_read_msg.c] : Send msg done! ~ bye

@@ -13,8 +13,6 @@ Logger l;
 void exit_func()
 {
     log_close(&l);
-    // closing the connected socket
-//    close(client_fd);
     // closing the listening socket
     shutdown(server_fd, SHUT_RDWR);
     exit(0);
@@ -32,20 +30,21 @@ void* thread_f(void *arg)
 
     char *cmd_line;
     int client_fd = ((args *)arg)->fd;
-    printf("Client fd  %d\n", client_fd);
+    // printf("Client fd  %d\n", client_fd);
     t_table* table = malloc(sizeof(t_table));
     create_shell(((args *)arg)->envp, &table);
-    printf("i am in THread function\n");
+    // printf("i am in THread function\n");
 
 
     while(1)
     {
 
+/////////////////////////////////////PING///////////////////////////////////////////////
+
             char serv_msg[] = {SERVERMSG};
             char* client_msg;
             client_msg = malloc(20);
 
-/////////////////////////////////////PING///////////////////////////////////////////////
             int read_m = recv(client_fd, client_msg, 20, 0);
             if (read_m > 0)
                 printf("read msg is ~ %s\n", client_msg);
@@ -61,7 +60,7 @@ void* thread_f(void *arg)
 
         read_msg_socket(&l, client_fd, &cmd_line);
 
-        printf("Server: command output ~ %s\n", cmd_line);
+        // printf("Server: command output ~ %s\n", cmd_line);
 
         if (!strcmp(cmd_line, EXIT_MSG))
             break;
@@ -69,11 +68,7 @@ void* thread_f(void *arg)
         //in this section we do lex analyzation and execution 
         lexical_analyzer(cmd_line, table);
         parser = parse_tree(table, ((args *)arg)->envp);
-        execution(parser, table, ((args *)arg)->envp);
-    
-        char *cmd_output = "massage arrived";
-
-        send_msg_socket(&l, client_fd, cmd_output);
+        execution(&l, client_fd, parser, table, ((args *)arg)->envp);
 
     }
     close(client_fd);
@@ -85,9 +80,9 @@ int main(int ac, char **av, char **envp)
 {
     Logger l1;
     log_init(&l1);
-//    log_in_file(&l1, true);
+    // log_in_file(&l1, true);
     l = l1;
-    
+
     //creating 20 thread identifiers
     pthread_t threads[20];
 
@@ -149,18 +144,18 @@ int main(int ac, char **av, char **envp)
             }
             else
             {
-                printf("listening is good 89\n");
+                // printf("listening is good 89\n");
             }
 
             if(table->listening_status == ERR_LISTENING_MSG)
             {
-            printf("Listening Error\n");
-            exit(ERR_LISTENING_MSG);
+                printf("Listening Error\n");
+                exit(ERR_LISTENING_MSG);
             }
 
-            printf("i am in for \n");
+            // printf("i am in for \n");
             int client_size = sizeof(mysock);
-            printf("%d\n", client_size);
+            // printf("%d\n", client_size);
 
             table->socket_client_fd = accept(table->socket_server_fd,(struct sockaddr*)&mysock,&client_size);
 
@@ -169,8 +164,8 @@ int main(int ac, char **av, char **envp)
 
             if(table->new_socket_status == ERR_SOCKET_MSG)
             {
-            printf("Accept Error\n");
-            exit(ERR_SOCKET_MSG);
+                printf("Accept Error\n");
+                exit(ERR_SOCKET_MSG);
             }
             //now as long as there are free threads we can use their identifiers
             //and create some connections with coresponding clients
@@ -186,23 +181,14 @@ int main(int ac, char **av, char **envp)
             args_->envp = envp ;
 
             rc = pthread_create(&threads[i], NULL, thread_f, args_);
-            printf("thread crete result is %d\n ", rc);
+            // printf("thread crete result is %d\n ", rc);
+            
             if (rc != 0) //if thread creat works it returns 0, else it returns some num
             {
                 printf("\nError:unable to create thread, \n");
                 // exit(-1);
                 fprintf(stderr, "%s\n", strerror(errno));
             }
-            // read_msg_socket(&l1, table->socket_client_fd, &table->cmdline);
-
-            // LOG_TRACE(&l1, "Server: command ~ %s\n", table->cmdline);
-
-            // pthread_join(threads[i], NULL);
-            // closing the connected socket
-            // close(table->socket_client_fd);
-
-
-            // send_msg_socket(&l1, table->socket_client_fd, table->cmd_output);
         }
 
     }

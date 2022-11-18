@@ -50,7 +50,6 @@
 # include <arpa/inet.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-#include <netdb.h>  //for gethostbyname()
 # include "../libft/libft.h"
 # include "structs.h"
 # include "builtins.h"
